@@ -6,12 +6,12 @@
 2. Prerequisites
 3. Introduction
 4. What is Constructor Chaining?
-5. Why Constructor Chaining is Required?
+5. Why is Constructor Chaining Required?
 6. Types of Constructor Chaining
 7. Constructor Chaining using super()
-8. Constructor Chaining using Class Name
-9. Internal Working
-10. Constructor Execution Order
+8. Constructor Chaining in Multilevel Inheritance
+9. Constructor Execution Order
+10. Internal Working
 11. Summary
 
 ---
@@ -21,11 +21,11 @@
 After completing this chapter, you will be able to:
 
 - Understand Constructor Chaining.
-- Explain why Constructor Chaining is required.
-- Learn how constructors are executed in inheritance.
-- Understand the use of the `super()` function.
-- Differentiate between `super()` and class name constructor calls.
-- Write programs using Constructor Chaining.
+- Explain the need for Constructor Chaining.
+- Learn constructor execution order.
+- Understand the role of `super()`.
+- Implement Constructor Chaining in Single and Multilevel Inheritance.
+- Write efficient constructor initialization code.
 
 ---
 
@@ -33,26 +33,28 @@ After completing this chapter, you will be able to:
 
 Before learning this chapter, you should know:
 
-- Classes and Objects
 - Constructors
-- Inheritance (Basic Concept)
-- Static Variables
+- Inheritance
+- Method Overriding
+- `super()` Function
 
 ---
 
 # Introduction
 
-In Object-Oriented Programming, inheritance allows one class to inherit the properties and methods of another class.
+In Object-Oriented Programming,
 
-When an object of a child class is created, an important question arises:
+a Child Class often inherits data and behavior from a Parent Class.
 
-**Should only the child class constructor execute?**
+Both classes may define their own constructors.
 
-The answer is **No**.
+When an object of the Child Class is created,
 
-Usually, both the parent class constructor and the child class constructor need to execute so that the object is initialized completely.
+both constructors may need to execute to properly initialize the object.
 
-This process is called **Constructor Chaining**.
+The process of calling one constructor from another constructor is called **Constructor Chaining**.
+
+Python provides Constructor Chaining using the `super()` function.
 
 ---
 
@@ -62,142 +64,218 @@ This process is called **Constructor Chaining**.
 
 **Constructor Chaining** is the process of calling one constructor from another constructor.
 
-It allows multiple constructors to execute automatically in a specific order.
+In Python,
 
-Constructor chaining mainly occurs in inheritance.
+Constructor Chaining is commonly achieved using
+
+```python
+super().__init__()
+```
+
+This allows the Parent Class constructor to execute before the Child Class constructor continues.
+
+---
+
+# Simple Definition
+
+> Calling one constructor from another constructor is called **Constructor Chaining**.
 
 ---
 
 # Why is Constructor Chaining Required?
 
-Suppose we have two classes.
-
-Parent Class
+Suppose we have a class
 
 ```text
 Person
 ```
 
-Child Class
-
-```text
-Student
-```
-
-The `Person` class initializes:
+containing
 
 - Name
 - Age
 
-The `Student` class initializes:
+Now,
+
+a class
+
+```text
+Employee
+```
+
+inherits from `Person` and contains
+
+- Employee ID
+- Department
+
+When an Employee object is created,
+
+both the Person data and Employee data must be initialized.
+
+Instead of rewriting the Parent Class initialization,
+
+we call the Parent Constructor using
+
+```python
+super().__init__()
+```
+
+This avoids duplicate code.
+
+---
+
+# Real-World Example
+
+Consider a University Management System.
+
+### Parent Class
+
+```text
+Person
+
+↓
+
+Name
+
+Age
+```
+
+### Child Class
+
+```text
+Student
+
+↓
+
+Roll Number
+
+Course
+```
+
+When a Student object is created,
+
+the Parent constructor initializes
+
+- Name
+- Age
+
+Then,
+
+the Child constructor initializes
 
 - Roll Number
 - Course
 
-When creating a `Student` object,
-
-both constructors should execute.
-
-Otherwise,
-
-the inherited data will not be initialized properly.
+This sequence is Constructor Chaining.
 
 ---
 
 # Types of Constructor Chaining
 
-Python supports constructor chaining in two ways.
+Python mainly supports Constructor Chaining through inheritance.
 
-### 1. Using `super()`
+The common scenarios are:
 
-Recommended approach.
-
-### 2. Using Parent Class Name
-
-Possible, but generally not recommended because it reduces flexibility.
+- Single Inheritance
+- Multilevel Inheritance
+- Multiple Inheritance (following MRO)
 
 ---
 
 # Constructor Chaining using super()
 
-The `super()` function is used to call the constructor of the parent class.
+The `super()` function is used to call the Parent Class constructor.
 
----
-
-## Syntax
+Syntax
 
 ```python
 super().__init__()
 ```
 
-If the parent constructor accepts parameters,
+If the Parent constructor accepts parameters,
 
-```python
-super().__init__(parameter1, parameter2)
-```
-
----
-
-# Constructor Chaining using Parent Class Name
-
-Instead of `super()`, we can directly call the parent constructor.
+pass them through `super()`.
 
 Example
 
 ```python
-ParentClass.__init__(self)
+super().__init__(name, age)
 ```
-
-Although this works,
-
-using `super()` is considered the best practice because it supports inheritance more effectively.
 
 ---
 
-# Internal Working
+# Constructor Chaining in Multilevel Inheritance
 
-Suppose we create an object.
-
-```python
-student = Student()
-```
-
-Python internally performs the following steps.
+Suppose we have
 
 ```text
-Student Object Created
+GrandParent
 
 ↓
 
-Child Constructor Starts
+Parent
 
 ↓
 
-super().__init__()
-
-↓
-
-Parent Constructor Executes
-
-↓
-
-Returns to Child Constructor
-
-↓
-
-Child Constructor Executes
-
-↓
-
-Object Initialization Completed
+Child
 ```
+
+When the Child object is created,
+
+constructors execute in the following order:
+
+```text
+GrandParent
+
+↓
+
+Parent
+
+↓
+
+Child
+```
+
+Each constructor calls its Parent using `super().__init__()`.
 
 ---
 
 # Constructor Execution Order
 
+For Single Inheritance
+
 ```text
-Object Creation
+Parent Constructor
+
+↓
+
+Child Constructor
+```
+
+For Multilevel Inheritance
+
+```text
+GrandParent Constructor
+
+↓
+
+Parent Constructor
+
+↓
+
+Child Constructor
+```
+
+For Multiple Inheritance,
+
+Python follows the **Method Resolution Order (MRO)**.
+
+---
+
+# Internal Working
+
+```text
+Create Child Object
 
 ↓
 
@@ -205,41 +283,69 @@ Child Constructor Called
 
 ↓
 
+super().__init__()
+
+↓
+
 Parent Constructor Called
 
 ↓
 
-Parent Constructor Completes
+Parent Initialization Completed
 
 ↓
 
-Child Constructor Completes
+Control Returns
 
 ↓
 
-Object Ready
+Child Initialization Completed
 ```
+
+---
+
+# Advantages of Constructor Chaining
+
+- Avoids duplicate initialization code.
+- Improves code reusability.
+- Ensures proper object initialization.
+- Simplifies inheritance.
+- Improves maintainability.
+
+---
+
+# Real-Time Applications
+
+Constructor Chaining is used in:
+
+- Banking Systems
+- Hospital Management Systems
+- Employee Management Systems
+- School Management Systems
+- Django Models
+- GUI Applications
+- Enterprise Software
 
 ---
 
 # Summary
 
-In this part, you learned:
+In this part, we learned:
 
 - Constructor Chaining
 - Need for Constructor Chaining
-- Types of Constructor Chaining
-- Using `super()`
-- Using Parent Class Name
-- Internal Working
+- `super()` Function
 - Constructor Execution Order
+- Constructor Chaining in Single Inheritance
+- Constructor Chaining in Multilevel Inheritance
+- Internal Working
 
 
-# Program 1 – Constructor Chaining using super()
+# Program 1 – Basic Constructor Chaining using super()
 
 ## Problem Statement
 
-Write a Python program to demonstrate Constructor Chaining using the `super()` function.
+Write a Python program to demonstrate Constructor Chaining using `super()`.
 
 ---
 
@@ -249,114 +355,16 @@ Write a Python program to demonstrate Constructor Chaining using the `super()` f
 class Person:
 
     def __init__(self):
-        print("Person Constructor Executed")
 
-
-class Student(Person):
-
-    def __init__(self):
-        super().__init__()
-        print("Student Constructor Executed")
-
-
-student = Student()
-```
-
----
-
-## Output
-
-```text
-Person Constructor Executed
-Student Constructor Executed
-```
-
----
-
-## Explanation
-
-When the `Student` object is created,
-
-- The child constructor starts.
-- `super().__init__()` calls the parent constructor.
-- After the parent constructor finishes, control returns to the child constructor.
-- The child constructor then completes its execution.
-
----
-
-## Dry Run
-
-```text
-Create Student Object
-
-↓
-
-Student Constructor Starts
-
-↓
-
-super().__init__()
-
-↓
-
-Person Constructor Executes
-
-↓
-
-Returns to Student Constructor
-
-↓
-
-Student Constructor Executes
-
-↓
-
-Object Successfully Initialized
-```
-
----
-
-## Memory Representation
-
-```text
-                 Student Object
-
-                       │
-
-                       ▼
-
-        +-------------------------------+
-
-        | Person Constructor            |
-
-        | Student Constructor           |
-
-        +-------------------------------+
-```
-
----
-
-# Program 2 – Constructor Chaining using Parent Class Name
-
-## Problem Statement
-
-Write a Python program to call the parent constructor using the parent class name.
-
----
-
-## Program
-
-```python
-class Person:
-
-    def __init__(self):
         print("Person Constructor")
 
 
 class Student(Person):
 
     def __init__(self):
-        Person.__init__(self)
+
+        super().__init__()
+
         print("Student Constructor")
 
 
@@ -369,6 +377,7 @@ student = Student()
 
 ```text
 Person Constructor
+
 Student Constructor
 ```
 
@@ -376,19 +385,21 @@ Student Constructor
 
 ## Explanation
 
-Instead of using `super()`,
+When the `Student` object is created:
 
-the parent constructor is called directly using the parent class name.
+1. `Student.__init__()` is called.
+2. `super().__init__()` invokes the `Person` constructor.
+3. After the parent constructor finishes, execution returns to the child constructor.
 
-Although this works, `super()` is generally preferred because it supports inheritance more effectively.
+This process is called **Constructor Chaining**.
 
 ---
 
-# Program 3 – Constructor Chaining with Parameters
+# Program 2 – Constructor Chaining with Parameters
 
 ## Problem Statement
 
-Write a Python program to pass parameters from the child constructor to the parent constructor.
+Write a Python program to pass parameters from the Child constructor to the Parent constructor.
 
 ---
 
@@ -398,7 +409,9 @@ Write a Python program to pass parameters from the child constructor to the pare
 class Person:
 
     def __init__(self, name):
+
         self.name = name
+
         print("Name :", self.name)
 
 
@@ -422,6 +435,7 @@ student = Student("Rahul", "Python")
 
 ```text
 Name : Rahul
+
 Course : Python
 ```
 
@@ -429,13 +443,73 @@ Course : Python
 
 ## Explanation
 
-The child's constructor passes the `name` parameter to the parent constructor using `super()`.
+The Child constructor forwards the `name` parameter to the Parent constructor using
 
-The parent initializes `name`, while the child initializes `course`.
+```python
+super().__init__(name)
+```
+
+The Child constructor then initializes its own data.
 
 ---
 
-# Program 4 – Constructor Chaining with Three Levels of Inheritance
+# Program 3 – Parent Constructor Not Called
+
+## Problem Statement
+
+Write a Python program without using `super()`.
+
+---
+
+## Program
+
+```python
+class Person:
+
+    def __init__(self):
+
+        print("Person Constructor")
+
+
+class Student(Person):
+
+    def __init__(self):
+
+        print("Student Constructor")
+
+
+student = Student()
+```
+
+---
+
+## Output
+
+```text
+Student Constructor
+```
+
+---
+
+## Explanation
+
+Since `super().__init__()` is not used,
+
+the Parent constructor never executes.
+
+As a result,
+
+Parent class initialization is skipped.
+
+---
+
+# Program 4 – Multilevel Constructor Chaining
+
+## Problem Statement
+
+Write a Python program to demonstrate Constructor Chaining in Multilevel Inheritance.
+
+---
 
 ## Program
 
@@ -443,20 +517,25 @@ The parent initializes `name`, while the child initializes `course`.
 class GrandParent:
 
     def __init__(self):
+
         print("GrandParent Constructor")
 
 
 class Parent(GrandParent):
 
     def __init__(self):
+
         super().__init__()
+
         print("Parent Constructor")
 
 
 class Child(Parent):
 
     def __init__(self):
+
         super().__init__()
+
         print("Child Constructor")
 
 
@@ -469,7 +548,9 @@ child = Child()
 
 ```text
 GrandParent Constructor
+
 Parent Constructor
+
 Child Constructor
 ```
 
@@ -477,34 +558,54 @@ Child Constructor
 
 ## Explanation
 
-Constructor execution starts from the top-most parent class and proceeds down to the child class.
+Execution order:
+
+```text
+GrandParent
+
+↓
+
+Parent
+
+↓
+
+Child
+```
+
+Each constructor calls its immediate parent using `super()`.
 
 ---
 
-# Program 5 – Constructor Chaining in Employee Management
+# Program 5 – Constructor Chaining with Data Initialization
 
 ## Program
 
 ```python
 class Employee:
 
-    def __init__(self, employee_id):
-        self.employee_id = employee_id
-        print("Employee ID :", self.employee_id)
+    def __init__(self, name):
+
+        self.name = name
 
 
 class Manager(Employee):
 
-    def __init__(self, employee_id, department):
+    def __init__(self, name, department):
 
-        super().__init__(employee_id)
+        super().__init__(name)
 
         self.department = department
+
+    def display(self):
+
+        print("Name       :", self.name)
 
         print("Department :", self.department)
 
 
-manager = Manager(101, "Sales")
+manager = Manager("Rahul", "HR")
+
+manager.display()
 ```
 
 ---
@@ -512,29 +613,377 @@ manager = Manager(101, "Sales")
 ## Output
 
 ```text
-Employee ID : 101
-Department : Sales
+Name       : Rahul
+
+Department : HR
 ```
 
 ---
 
-# Advantages of Constructor Chaining
+## Explanation
 
-- Reuses parent class initialization.
-- Avoids duplicate code.
-- Supports inheritance.
-- Makes programs easier to maintain.
-- Ensures proper object initialization.
+The Parent constructor initializes `name`.
+
+The Child constructor initializes `department`.
+
+Both classes participate in object initialization.
+
+---
+
+# Program 6 – Multiple Inheritance Constructor Chaining
+
+## Program
+
+```python
+class A:
+
+    def __init__(self):
+
+        print("Class A")
+
+
+class B(A):
+
+    def __init__(self):
+
+        super().__init__()
+
+        print("Class B")
+
+
+class C(A):
+
+    def __init__(self):
+
+        super().__init__()
+
+        print("Class C")
+
+
+class D(B, C):
+
+    def __init__(self):
+
+        super().__init__()
+
+        print("Class D")
+
+
+d = D()
+```
+
+---
+
+## Output
+
+```text
+Class A
+
+Class C
+
+Class B
+
+Class D
+```
+
+---
+
+## Explanation
+
+Python follows the **Method Resolution Order (MRO)**.
+
+Execution Order
+
+```text
+A
+
+↓
+
+C
+
+↓
+
+B
+
+↓
+
+D
+```
+
+You can verify it using
+
+```python
+print(D.mro())
+```
+
+---
+
+# Program 7 – Displaying MRO
+
+## Program
+
+```python
+class A:
+    pass
+
+
+class B(A):
+    pass
+
+
+class C(A):
+    pass
+
+
+class D(B, C):
+    pass
+
+
+print(D.mro())
+```
+
+---
+
+## Sample Output
+
+```text
+[<class '__main__.D'>,
+<class '__main__.B'>,
+<class '__main__.C'>,
+<class '__main__.A'>,
+<class 'object'>]
+```
+
+---
+
+## Explanation
+
+The Method Resolution Order determines the sequence in which Python searches classes during inheritance.
+
+---
+
+# Program 8 – Constructor Chaining with Default Arguments
+
+## Program
+
+```python
+class Person:
+
+    def __init__(self, name="Unknown"):
+
+        self.name = name
+
+
+class Student(Person):
+
+    def __init__(self, name="Unknown", course="Python"):
+
+        super().__init__(name)
+
+        self.course = course
+
+student = Student()
+
+print(student.name)
+
+print(student.course)
+```
+
+---
+
+## Output
+
+```text
+Unknown
+
+Python
+```
+
+---
+
+## Explanation
+
+Default arguments make constructor chaining more flexible.
+
+---
+
+# Program 9 – Constructor Chaining using Employee Hierarchy
+
+## Program
+
+```python
+class Employee:
+
+    def __init__(self):
+
+        print("Employee Initialized")
+
+
+class Developer(Employee):
+
+    def __init__(self):
+
+        super().__init__()
+
+        print("Developer Initialized")
+
+
+developer = Developer()
+```
+
+---
+
+## Output
+
+```text
+Employee Initialized
+
+Developer Initialized
+```
+
+---
+
+# Program 10 – Constructor Execution Flow
+
+## Program
+
+```python
+class Parent:
+
+    def __init__(self):
+
+        print("Step 1 : Parent Constructor")
+
+
+class Child(Parent):
+
+    def __init__(self):
+
+        print("Step 2 : Child Constructor Started")
+
+        super().__init__()
+
+        print("Step 3 : Child Constructor Completed")
+
+
+child = Child()
+```
+
+---
+
+## Output
+
+```text
+Step 2 : Child Constructor Started
+
+Step 1 : Parent Constructor
+
+Step 3 : Child Constructor Completed
+```
+
+---
+
+## Explanation
+
+Execution Flow
+
+```text
+Child Constructor Starts
+
+↓
+
+Parent Constructor Executes
+
+↓
+
+Control Returns
+
+↓
+
+Child Constructor Completes
+```
+
+---
+
+# Dry Run
+
+```text
+Create Child Object
+
+↓
+
+Child Constructor Starts
+
+↓
+
+super().__init__()
+
+↓
+
+Parent Constructor Executes
+
+↓
+
+Parent Initialization Complete
+
+↓
+
+Control Returns
+
+↓
+
+Child Initialization Complete
+```
+
+---
+
+# Memory Representation
+
+```text
+Child Object
+
+        │
+
+        ▼
+
++----------------------------+
+
+Parent Variables
+
+↓
+
+name
+
+----------------------------
+
+Child Variables
+
+↓
+
+course
+
++----------------------------+
+```
+
+---
+
+# Advantages
+
+- Eliminates duplicate initialization code.
+- Promotes code reuse.
+- Ensures proper initialization of inherited members.
+- Simplifies inheritance.
+- Improves readability and maintainability.
 
 ---
 
 # Best Practices
 
-- Prefer `super()` over directly calling the parent class.
-- Initialize common data in the parent class.
-- Initialize child-specific data in the child class.
-- Avoid duplicating initialization code.
-- Keep constructors simple and focused.
+- Always call `super().__init__()` when the Parent constructor initializes important data.
+- Pass required parameters through `super()`.
+- Follow the MRO in Multiple Inheritance.
+- Keep constructors focused on initialization only.
+- Avoid unnecessary constructor logic.
 
 ---
 
@@ -542,78 +991,43 @@ Department : Sales
 
 ## Mistake 1
 
-Forgetting to call the parent constructor.
+Forgetting to call `super().__init__()`.
 
-❌ Incorrect
-
-```python
-class Student(Person):
-
-    def __init__(self):
-        print("Student")
-```
-
-The parent constructor is never executed.
-
----
-
-✅ Correct
-
-```python
-class Student(Person):
-
-    def __init__(self):
-        super().__init__()
-        print("Student")
-```
+This prevents Parent class initialization.
 
 ---
 
 ## Mistake 2
 
-Using the parent class name unnecessarily.
+Passing incorrect arguments to `super()`.
 
-```python
-Person.__init__(self)
-```
-
-Although valid,
-
-prefer
-
-```python
-super().__init__()
-```
+Always match the Parent constructor's parameters.
 
 ---
 
 ## Mistake 3
 
-Passing incorrect arguments.
+Calling the Parent constructor directly.
+
+❌ Less Preferred
+
+```python
+Person.__init__(self)
+```
+
+✅ Preferred
 
 ```python
 super().__init__()
 ```
 
-If the parent constructor expects parameters,
-
-this produces a `TypeError`.
-
-Always pass the required arguments.
-
 ---
 
-# Real-Time Applications
+## Mistake 4
 
-Constructor Chaining is used in:
+Ignoring MRO in Multiple Inheritance.
 
-- Banking Systems
-- Employee Management Systems
-- Student Management Systems
-- Hospital Management Systems
-- E-Commerce Applications
-- Inventory Systems
-- Enterprise Applications
+Always understand the Method Resolution Order when using multiple parent classes.
 
 ---
 
@@ -623,7 +1037,7 @@ Constructor Chaining is used in:
 
 ### Answer
 
-Constructor Chaining is the process of calling one constructor from another constructor, usually in an inheritance hierarchy.
+Constructor Chaining is the process of calling one constructor from another constructor, usually using `super().__init__()`.
 
 ---
 
@@ -631,53 +1045,103 @@ Constructor Chaining is the process of calling one constructor from another cons
 
 ### Answer
 
-It ensures that both parent and child classes are initialized correctly.
+It ensures that Parent class data is initialized before Child class initialization continues.
 
 ---
 
-## 3. What is the purpose of `super()`?
+## 3. Which function is used for Constructor Chaining in Python?
 
 ### Answer
 
-`super()` is used to access members of the parent class, including its constructor.
+`super()`.
 
 ---
 
-## 4. Which approach is recommended for Constructor Chaining?
+## 4. What happens if `super().__init__()` is not called?
 
 ### Answer
 
-Using `super()` because it supports inheritance properly and improves maintainability.
+The Parent constructor is not executed unless it is invoked explicitly.
 
 ---
 
-## 5. Can Constructor Chaining occur in multilevel inheritance?
+## 5. Can Constructor Chaining be used in Multilevel Inheritance?
 
 ### Answer
 
 Yes.
 
-Each constructor calls its parent constructor until the top-most parent constructor executes.
+Each constructor calls its Parent constructor using `super()`.
 
 ---
 
-## Practice Programs
+## 6. Does Constructor Chaining follow MRO?
 
-1. Create a Person and Student class using `super()`.
-2. Pass parameters from a child constructor to a parent constructor.
-3. Implement constructor chaining using three levels of inheritance.
-4. Compare `super()` with direct parent constructor calls.
-5. Create an Employee and Manager class demonstrating constructor chaining.
+### Answer
+
+Yes.
+
+In Multiple Inheritance, constructor calls follow the Method Resolution Order.
+
+---
+
+## 7. Is calling the Parent constructor directly recommended?
+
+### Answer
+
+No.
+
+Using `super()` is the recommended and more maintainable approach.
+
+---
+
+## 8. Can parameters be passed through `super()`?
+
+### Answer
+
+Yes.
+
+Example:
+
+```python
+super().__init__(name, age)
+```
+
+---
+
+## 9. Where is Constructor Chaining commonly used?
+
+### Answer
+
+Inheritance hierarchies such as Employee Management Systems, Banking Applications, School Management Systems, Django models, and GUI frameworks.
+
+---
+
+## 10. What is the execution order in Constructor Chaining?
+
+### Answer
+
+The Parent constructor executes before the Child constructor completes its initialization.
+
+---
+
+# Practice Programs
+
+1. Demonstrate Constructor Chaining using Single Inheritance.
+2. Demonstrate Constructor Chaining using Multilevel Inheritance.
+3. Pass parameters through `super()`.
+4. Display MRO using `mro()`.
+5. Create an Employee hierarchy using Constructor Chaining.
 
 ---
 
 # Quick Revision
 
-- Constructor Chaining initializes parent and child classes.
-- `super()` calls the parent constructor.
-- `super()` is the recommended approach.
-- Constructor execution starts from the parent class.
-- Constructor Chaining reduces duplicate initialization code.
+- Constructor Chaining calls one constructor from another.
+- `super().__init__()` invokes the Parent constructor.
+- Parent constructors should initialize inherited data.
+- Multiple Inheritance follows MRO.
+- Constructor Chaining improves code reuse and maintainability.
 
 ---
 
@@ -686,12 +1150,11 @@ Each constructor calls its parent constructor until the top-most parent construc
 In this chapter, we learned:
 
 - Constructor Chaining
-- Why Constructor Chaining is required
-- Types of Constructor Chaining
-- Using `super()`
-- Using Parent Class Name
+- `super()` Function
 - Constructor Execution Order
-- Internal Working
+- Single Inheritance Constructor Chaining
+- Multilevel Constructor Chaining
+- Multiple Inheritance and MRO
 - Practical Programs
 - Best Practices
 - Common Mistakes
