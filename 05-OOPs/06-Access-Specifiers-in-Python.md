@@ -13,7 +13,9 @@
 9. Private Members
 10. Name Mangling
 11. Comparison of Access Specifiers
-12. Summary
+12. Internal Working
+13. Advantages
+14. Summary
 
 ---
 
@@ -22,11 +24,11 @@
 After completing this chapter, you will be able to:
 
 - Understand Access Specifiers.
-- Explain why Access Specifiers are used.
+- Explain the need for Access Specifiers.
 - Learn Public, Protected, and Private members.
-- Understand Python's naming conventions.
-- Learn Name Mangling.
-- Write programs using Access Specifiers.
+- Understand Name Mangling.
+- Apply Access Specifiers in real-world applications.
+- Differentiate Python and Java access control.
 
 ---
 
@@ -36,6 +38,7 @@ Before learning this chapter, you should know:
 
 - Classes
 - Objects
+- Encapsulation
 - Instance Variables
 - Methods
 - Inheritance
@@ -44,31 +47,13 @@ Before learning this chapter, you should know:
 
 # Introduction
 
-In Object-Oriented Programming, every class contains data and methods.
+In the previous chapter, we learned **Encapsulation**, which combines data and methods into a single unit while protecting data from unauthorized access.
 
-Sometimes we want every object to access the data.
+One important concept used to implement Encapsulation is **Access Specifiers**.
 
-Sometimes we want access to be restricted.
+Access Specifiers determine **who can access class variables and methods**.
 
-For example,
-
-In a Banking Application,
-
-```text
-Account Number
-
-Balance
-
-PIN Number
-```
-
-The balance and PIN should not be modified directly by anyone.
-
-To control access to class members, Python provides **Access Specifiers**.
-
-Unlike Java or C++, Python does not have strict access control.
-
-Instead, it follows **naming conventions** that indicate how members should be accessed.
+Unlike Java or C++, Python does not enforce strict access modifiers. Instead, it uses **naming conventions** that developers follow to indicate how members should be accessed.
 
 ---
 
@@ -78,25 +63,72 @@ Instead, it follows **naming conventions** that indicate how members should be a
 
 Access Specifiers are mechanisms used to control the visibility and accessibility of class members (variables and methods).
 
-They help protect data and improve code organization.
+They help protect data and support Encapsulation.
+
+---
+
+# Simple Definition
+
+> Access Specifiers decide who can access the members of a class.
 
 ---
 
 # Why are Access Specifiers Required?
 
-Access Specifiers help to:
+Consider a Banking Application.
 
-- Protect sensitive data.
-- Prevent accidental modification.
-- Improve code security.
-- Support Encapsulation.
-- Improve maintainability.
+A Bank Account contains:
+
+- Account Number
+- Customer Name
+- Balance
+- ATM PIN
+
+Can every user directly modify the balance or PIN?
+
+**No.**
+
+Instead,
+
+the application should allow access only through methods such as
+
+- Deposit()
+- Withdraw()
+- ChangePIN()
+
+This prevents unauthorized modifications.
+
+---
+
+# Real-World Example
+
+Consider a Hospital Management System.
+
+Doctor Information
+
+```text
+Doctor Name
+
+Department
+
+Salary
+
+Password
+```
+
+Everyone can know the doctor's name and department.
+
+However,
+
+Salary and Password should be protected.
+
+Access Specifiers help implement this restriction.
 
 ---
 
 # Types of Access Specifiers
 
-Python provides three types of access specifiers.
+Python provides three types of Access Specifiers.
 
 - Public
 - Protected
@@ -112,11 +144,11 @@ Public members can be accessed from anywhere.
 
 They can be accessed:
 
-- Inside the class.
-- Outside the class.
-- Inside child classes.
+- Inside the class
+- Outside the class
+- Inside child classes
 
-Public members do not use any special prefix.
+No special symbol is required.
 
 ---
 
@@ -144,7 +176,7 @@ Here,
 name
 ```
 
-is a public instance variable.
+is a Public Variable.
 
 ---
 
@@ -154,9 +186,7 @@ is a public instance variable.
 
 Protected members are intended to be accessed only inside the class and its child classes.
 
-Python indicates protected members using a **single underscore (`_`)** prefix.
-
-Although they can still be accessed from outside the class, it is discouraged by convention.
+Python represents Protected members using a single underscore.
 
 ---
 
@@ -164,19 +194,15 @@ Although they can still be accessed from outside the class, it is discouraged by
 
 ```python
 _variable
-
-_method()
 ```
 
 Example
 
 ```python
-class Student:
-
-    def __init__(self):
-
-        self._marks = 95
+self._marks = 95
 ```
+
+Although accessible from outside the class, doing so is discouraged by convention.
 
 ---
 
@@ -184,11 +210,9 @@ class Student:
 
 ## Definition
 
-Private members are intended to be accessed only within the class where they are defined.
+Private members are intended to be accessed only inside the class where they are declared.
 
-Python indicates private members using **double underscores (`__`)**.
-
-Python performs **Name Mangling** to reduce accidental access from outside the class.
+Python represents Private members using two underscores.
 
 ---
 
@@ -196,19 +220,17 @@ Python performs **Name Mangling** to reduce accidental access from outside the c
 
 ```python
 __variable
-
-__method()
 ```
 
 Example
 
 ```python
-class Student:
-
-    def __init__(self):
-
-        self.__password = "Python123"
+self.__password = "Python123"
 ```
+
+Python internally changes the variable name.
+
+This process is called **Name Mangling**.
 
 ---
 
@@ -218,35 +240,31 @@ Python does not completely hide private members.
 
 Instead,
 
-it changes their names internally.
-
-Example
+it changes
 
 ```python
 __password
 ```
 
-becomes
+into
 
 ```python
 _Student__password
 ```
 
-This process is called **Name Mangling**.
+This prevents accidental access.
 
-It helps prevent accidental access but does not provide absolute security.
+It is **not** a security mechanism.
 
 ---
 
-# Access Specifiers Comparison
+# Comparison of Access Specifiers
 
-| Access Specifier | Prefix | Same Class | Child Class | Outside Class |
-|------------------|--------|------------|-------------|---------------|
+| Access Specifier | Symbol | Same Class | Child Class | Outside Class |
+|-----------------|---------|------------|-------------|---------------|
 | Public | None | ✅ | ✅ | ✅ |
 | Protected | `_` | ✅ | ✅ | ⚠️ Discouraged |
 | Private | `__` | ✅ | ❌ Direct Access | ❌ Direct Access |
-
-> **Note:** Protected and private members can still be accessed in Python through conventions or name mangling, but doing so should generally be avoided unless necessary.
 
 ---
 
@@ -254,9 +272,71 @@ It helps prevent accidental access but does not provide absolute security.
 
 | Java | Python |
 |------|--------|
-| Strict access modifiers | Naming conventions |
-| Compiler enforces access | Developer discipline |
-| public, protected, private | public, `_protected`, `__private` |
+| Compiler Enforced | Naming Convention |
+| Strict Access Control | Flexible Access Control |
+| public | Public |
+| protected | _Protected |
+| private | __Private |
+
+---
+
+# Internal Working
+
+Suppose
+
+```python
+self.__salary
+```
+
+Python internally converts it into
+
+```python
+_Employee__salary
+```
+
+When accessed outside,
+
+Python searches
+
+```python
+__salary
+```
+
+which does not exist.
+
+Therefore,
+
+an
+
+```text
+AttributeError
+```
+
+is generated.
+
+---
+
+# Advantages
+
+- Supports Encapsulation.
+- Protects sensitive information.
+- Prevents accidental modification.
+- Makes programs easier to maintain.
+- Improves code organization.
+- Encourages better software design.
+
+---
+
+# Real-Time Applications
+
+Access Specifiers are used in:
+
+- Banking Systems
+- ATM Applications
+- Employee Management Systems
+- Hospital Management Systems
+- E-Commerce Applications
+- School Management Systems
 
 ---
 
@@ -265,12 +345,13 @@ It helps prevent accidental access but does not provide absolute security.
 In this part, we learned:
 
 - Access Specifiers
-- Need for Access Specifiers
 - Public Members
 - Protected Members
 - Private Members
 - Name Mangling
-- Difference between Python and Java Access Control
+- Python vs Java Access Control
+- Internal Working
+- Advantages
 
 
 # Program 1 – Public Access Specifier
@@ -287,6 +368,7 @@ Write a Python program to demonstrate Public Members.
 class Student:
 
     def __init__(self):
+
         self.name = "Rahul"
 
 student = Student()
@@ -306,13 +388,21 @@ Rahul
 
 ## Explanation
 
-`name` is a public variable.
+The variable
 
-It can be accessed:
+```python
+name
+```
+
+is a Public Variable.
+
+It can be accessed
 
 - Inside the class
 - Outside the class
-- Inside a child class
+- Inside child classes
+
+without any restrictions.
 
 ---
 
@@ -330,6 +420,7 @@ Write a Python program to demonstrate Protected Members.
 class Student:
 
     def __init__(self):
+
         self._marks = 95
 
 student = Student()
@@ -349,9 +440,22 @@ print(student._marks)
 
 ## Explanation
 
-Although `_marks` can be accessed outside the class, it is considered **protected by convention**.
+The variable
 
-The single underscore (`_`) indicates that it is intended for internal use within the class and its subclasses.
+```python
+_marks
+```
+
+is a Protected Variable.
+
+Python allows access outside the class,
+
+but according to Python conventions,
+
+Protected members should only be used
+
+- Inside the class
+- Inside child classes
 
 ---
 
@@ -369,6 +473,7 @@ Write a Python program to demonstrate Private Members.
 class Student:
 
     def __init__(self):
+
         self.__password = "Python123"
 
 student = Student()
@@ -389,9 +494,15 @@ AttributeError:
 
 ## Explanation
 
-Python performs **Name Mangling** on private members.
+Python performs **Name Mangling**.
 
-The actual variable name becomes
+Internally,
+
+```python
+__password
+```
+
+becomes
 
 ```python
 _Student__password
@@ -399,15 +510,17 @@ _Student__password
 
 Therefore,
 
-```python
-student.__password
-```
-
-cannot access the variable directly.
+direct access fails.
 
 ---
 
 # Program 4 – Accessing Private Members using Name Mangling
+
+## Problem Statement
+
+Write a Python program to access a private member using Name Mangling.
+
+---
 
 ## Program
 
@@ -415,6 +528,7 @@ cannot access the variable directly.
 class Student:
 
     def __init__(self):
+
         self.__password = "Python123"
 
 student = Student()
@@ -446,13 +560,19 @@ to
 _Student__password
 ```
 
-This mechanism is called **Name Mangling**.
+Although this is possible,
 
-Although possible, accessing private members this way should generally be avoided.
+it should generally be avoided because it breaks encapsulation.
 
 ---
 
 # Program 5 – Protected Members in Inheritance
+
+## Problem Statement
+
+Write a Python program to demonstrate Protected Members in Inheritance.
+
+---
 
 ## Program
 
@@ -460,14 +580,15 @@ Although possible, accessing private members this way should generally be avoide
 class Person:
 
     def __init__(self):
+
         self._name = "Rahul"
 
 
 class Student(Person):
 
     def display(self):
-        print(self._name)
 
+        print(self._name)
 
 student = Student()
 
@@ -486,13 +607,23 @@ Rahul
 
 ## Explanation
 
-Protected members are intended to be used inside child classes.
+Protected members are intended to be inherited.
 
-The child class successfully accesses the protected variable.
+The child class can directly access
+
+```python
+_name
+```
 
 ---
 
 # Program 6 – Private Members in Inheritance
+
+## Problem Statement
+
+Write a Python program to demonstrate Private Members in Inheritance.
+
+---
 
 ## Program
 
@@ -500,14 +631,15 @@ The child class successfully accesses the protected variable.
 class Person:
 
     def __init__(self):
+
         self.__salary = 50000
 
 
 class Employee(Person):
 
     def display(self):
-        print(self.__salary)
 
+        print(self.__salary)
 
 employee = Employee()
 
@@ -527,95 +659,196 @@ AttributeError:
 
 ## Explanation
 
-Private members are not directly inherited.
+Private members are **not directly inherited**.
 
-The child class cannot access the parent's private members directly because of Name Mangling.
-
----
-
-# Internal Working
-
-Suppose
+Python internally converts
 
 ```python
-self.__salary
+__salary
 ```
 
-Python internally converts it into
+into
 
 ```python
 _Person__salary
 ```
 
-When the child class tries
+Inside the child class,
 
-```python
-self.__salary
-```
-
-Python looks for
+Python searches for
 
 ```python
 _Employee__salary
 ```
 
-Since that variable does not exist,
+which does not exist.
+
+Hence,
 
 an `AttributeError` occurs.
+
+---
+
+# Program 7 – Accessing Private Members using Getter Method
+
+## Program
+
+```python
+class Employee:
+
+    def __init__(self):
+
+        self.__salary = 50000
+
+    def get_salary(self):
+
+        return self.__salary
+
+employee = Employee()
+
+print(employee.get_salary())
+```
+
+---
+
+## Output
+
+```text
+50000
+```
+
+---
+
+## Explanation
+
+Instead of directly accessing the private variable,
+
+the Getter Method provides controlled access.
+
+This is the recommended approach.
+
+---
+
+# Program 8 – Updating Private Members using Setter Method
+
+## Program
+
+```python
+class Employee:
+
+    def __init__(self):
+
+        self.__salary = 0
+
+    def set_salary(self, salary):
+
+        if salary > 0:
+
+            self.__salary = salary
+
+    def get_salary(self):
+
+        return self.__salary
+
+employee = Employee()
+
+employee.set_salary(60000)
+
+print(employee.get_salary())
+```
+
+---
+
+## Output
+
+```text
+60000
+```
+
+---
+
+## Explanation
+
+The Setter Method validates the data before storing it.
+
+This prevents invalid values from being assigned.
+
+---
+
+# Dry Run
+
+```text
+Create Employee Object
+
+↓
+
+Private Variable Created
+
+↓
+
+Getter Called
+
+↓
+
+Private Variable Returned
+
+↓
+
+Output Displayed
+```
 
 ---
 
 # Memory Representation
 
 ```text
-Student Object
+Employee Object
 
         │
 
         ▼
 
-+---------------------------+
++------------------------------+
 
-name
-
-↓
-
-Rahul
-
-_marks
+__salary
 
 ↓
 
-95
-
-__password
+_Person__salary
 
 ↓
 
-_Student__password
+50000
 
-+---------------------------+
+------------------------------
+
+get_salary()
+
+set_salary()
+
++------------------------------+
 ```
 
 ---
 
 # Advantages
 
-- Supports Encapsulation.
 - Protects sensitive data.
-- Improves code readability.
 - Prevents accidental modification.
-- Makes programs easier to maintain.
+- Supports Encapsulation.
+- Improves maintainability.
+- Improves code readability.
+- Encourages secure programming.
 
 ---
 
 # Best Practices
 
-- Use **public** members for general data.
-- Use **protected** members for data intended for subclasses.
-- Use **private** members for sensitive information.
-- Do not rely on Name Mangling as a security mechanism.
-- Access private members through public methods (getters/setters or properties) when appropriate.
+- Use Public members for general-purpose data.
+- Use Protected members for inheritance-related data.
+- Use Private members for confidential information.
+- Prefer Getter and Setter methods instead of Name Mangling.
+- Validate data before updating private variables.
 
 ---
 
@@ -623,12 +856,12 @@ _Student__password
 
 ## Mistake 1
 
-Trying to access private members directly.
+Trying to access Private Variables directly.
 
 ❌ Incorrect
 
 ```python
-student.__password
+employee.__salary
 ```
 
 Produces
@@ -641,52 +874,45 @@ AttributeError
 
 ## Mistake 2
 
-Confusing Protected with Private
+Confusing Protected and Private Members.
 
 ```python
 _marks
 ```
 
-is **Protected**
+is Protected.
 
 ```python
 __marks
 ```
 
-is **Private**
+is Private.
 
 ---
 
 ## Mistake 3
 
-Assuming Python completely hides private members.
+Using Name Mangling in normal applications.
 
-Python only performs **Name Mangling**.
+```python
+employee._Employee__salary
+```
 
-Private members can still be accessed if necessary using the mangled name.
+Although possible,
+
+this should be avoided.
+
+Use Getter methods instead.
 
 ---
 
-# Real-Time Applications
+## Mistake 4
 
-Access Specifiers are used in:
+Assuming Python provides complete data security.
 
-- Banking Applications
-- ATM Systems
-- Hospital Management Systems
-- Employee Payroll Systems
-- Student Management Systems
-- E-Commerce Applications
+Python uses naming conventions and Name Mangling.
 
-Sensitive data such as:
-
-- Passwords
-- PIN Numbers
-- Account Balance
-- Salary
-- Personal Information
-
-should not be modified directly from outside the class.
+It is **not** intended as a strict security mechanism like Java's access modifiers.
 
 ---
 
@@ -696,7 +922,7 @@ should not be modified directly from outside the class.
 
 ### Answer
 
-Access Specifiers control the visibility and accessibility of class members.
+Access Specifiers determine the visibility and accessibility of class members.
 
 ---
 
@@ -710,23 +936,47 @@ Access Specifiers control the visibility and accessibility of class members.
 
 ---
 
-## 3. Does Python have strict Access Specifiers like Java?
+## 3. Does Python support strict Access Specifiers?
 
 ### Answer
 
 No.
 
-Python follows naming conventions rather than enforcing strict access control.
+Python follows naming conventions instead of compiler-enforced access control.
 
 ---
 
-## 4. What is Name Mangling?
+## 4. What is a Public Member?
+
+### Answer
+
+A member that can be accessed from anywhere.
+
+---
+
+## 5. What is a Protected Member?
+
+### Answer
+
+A member prefixed with a single underscore (`_`), intended for use within the class and its subclasses.
+
+---
+
+## 6. What is a Private Member?
+
+### Answer
+
+A member prefixed with a double underscore (`__`), intended for use only within its own class.
+
+---
+
+## 7. What is Name Mangling?
 
 ### Answer
 
 Name Mangling is the process of internally renaming private members to reduce accidental access.
 
-Example
+Example:
 
 ```python
 __salary
@@ -735,50 +985,58 @@ __salary
 becomes
 
 ```python
-_Person__salary
+_Employee__salary
 ```
 
 ---
 
-## 5. What is the difference between Protected and Private members?
+## 8. Can a Child Class access Private Members directly?
 
 ### Answer
 
-- Protected members use a single underscore (`_`) and are intended for use within the class and its subclasses.
-- Private members use a double underscore (`__`) and are intended for use only within the defining class.
+No.
+
+Private members are not directly accessible in child classes.
 
 ---
 
-## 6. Can private members be accessed outside the class?
+## 9. What is the recommended way to access Private Members?
 
 ### Answer
 
-Not directly.
+Using Getter and Setter methods or Python Properties.
 
-They can be accessed using the mangled name, but this is generally discouraged.
+---
+
+## 10. What is the difference between Public, Protected, and Private Members?
+
+| Public | Protected | Private |
+|---------|-----------|----------|
+| Accessible everywhere | Intended for class and subclasses | Intended only for the defining class |
 
 ---
 
 # Practice Programs
 
-1. Create a Student class with a public variable.
-2. Create an Employee class with a protected variable.
-3. Create a BankAccount class with a private PIN.
-4. Access a private variable using Name Mangling.
-5. Demonstrate protected member access in inheritance.
-6. Demonstrate why private members cannot be accessed directly by child classes.
+1. Create a Student class with Public variables.
+2. Create an Employee class with Protected variables.
+3. Create a BankAccount class with Private variables.
+4. Demonstrate Name Mangling.
+5. Create Getter and Setter methods.
+6. Demonstrate Protected Members in Inheritance.
+7. Demonstrate why Private Members cannot be directly inherited.
 
 ---
 
 # Quick Revision
 
-- Public → No prefix
+- Public → No Prefix
 - Protected → `_variable`
 - Private → `__variable`
-- Python uses naming conventions.
-- Name Mangling changes private member names internally.
-- Use `super()` and proper methods instead of directly accessing private data.
-- Prefer controlled access using methods or properties.
+- Python follows naming conventions.
+- Name Mangling changes the internal name of private members.
+- Use Getter and Setter methods for controlled access.
+- Access Specifiers help implement Encapsulation.
 
 ---
 
@@ -791,11 +1049,12 @@ In this chapter, you learned:
 - Protected Members
 - Private Members
 - Name Mangling
-- Access Specifiers in Inheritance
-- Python vs Java Access Control
+- Inheritance with Access Specifiers
+- Getter and Setter Methods
 - Practical Programs
 - Best Practices
 - Common Mistakes
 - Interview Questions
 - Practice Programs
 - Quick Revision
+
