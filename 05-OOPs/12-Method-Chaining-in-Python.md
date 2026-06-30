@@ -9,9 +9,10 @@
 5. Why is Method Chaining Required?
 6. How Method Chaining Works
 7. Returning self
-8. Internal Working
-9. Real-World Examples
-10. Summary
+8. Fluent Interface
+9. Method Chaining vs Constructor Chaining
+10. Internal Working
+11. Summary
 
 ---
 
@@ -20,11 +21,11 @@
 After completing this chapter, you will be able to:
 
 - Understand Method Chaining.
-- Explain why Method Chaining is used.
-- Learn how methods return objects.
-- Understand the use of the `self` keyword in Method Chaining.
-- Write programs using Method Chaining.
-- Understand Fluent Interface Design.
+- Explain why Method Chaining is required.
+- Learn how Method Chaining works.
+- Understand the importance of returning `self`.
+- Create Fluent Interfaces.
+- Differentiate Method Chaining and Constructor Chaining.
 
 ---
 
@@ -32,35 +33,42 @@ After completing this chapter, you will be able to:
 
 Before learning this chapter, you should know:
 
-- Classes and Objects
+- Classes
+- Objects
 - Methods
-- self Keyword
 - Constructors
-- return Statement
+- Constructor Chaining
+- self Keyword
 
 ---
 
 # Introduction
 
-In Python, one method can call another method by returning the current object.
+In Object-Oriented Programming,
 
-This technique is known as **Method Chaining**.
+an object usually contains multiple methods.
 
-Instead of calling methods one by one,
+Normally,
 
-```python
-obj.method1()
-obj.method2()
-obj.method3()
-```
+we call methods one after another.
 
-we can write
+Example
 
 ```python
-obj.method1().method2().method3()
+student.set_name("Rahul")
+
+student.set_age(21)
+
+student.display()
 ```
 
-This makes the code shorter, cleaner, and easier to read.
+Although this works correctly,
+
+it can become lengthy when many methods are involved.
+
+Python provides a cleaner approach called **Method Chaining**.
+
+Method Chaining allows multiple methods to be called in a single statement.
 
 ---
 
@@ -68,148 +76,253 @@ This makes the code shorter, cleaner, and easier to read.
 
 ## Definition
 
-**Method Chaining** is the process of calling multiple methods continuously using a single object.
+**Method Chaining** is the process of calling multiple methods one after another using the same object in a single statement.
 
-Each method returns the current object (`self`), allowing the next method to be called immediately.
+This is possible when each method returns the current object using
+
+```python
+return self
+```
+
+---
+
+# Simple Definition
+
+> Calling multiple methods continuously using the same object is called **Method Chaining**.
 
 ---
 
 # Why is Method Chaining Required?
 
-Suppose we are configuring a Mobile object.
+Suppose we are creating a Student object.
 
-Without Method Chaining
+Without Method Chaining,
 
-```python
-mobile.set_brand("Samsung")
-mobile.set_model("S25")
-mobile.set_price(85000)
-```
-
-Using Method Chaining
+we write
 
 ```python
-mobile.set_brand("Samsung")\
-      .set_model("S25")\
-      .set_price(85000)
+student.set_name("Rahul")
+
+student.set_age(21)
+
+student.set_course("Python")
+
+student.display()
 ```
 
-The second approach is:
+Using Method Chaining,
 
-- More readable
-- Easier to maintain
-- Cleaner
-- Professional
+the same code becomes
+
+```python
+student.set_name("Rahul")\
+       .set_age(21)\
+       .set_course("Python")\
+       .display()
+```
+
+This improves readability and makes the code more expressive.
 
 ---
 
 # How Method Chaining Works
 
-Method chaining works because every method returns the current object.
-
-Example
+Method Chaining works because every method returns
 
 ```python
-return self
+self
 ```
 
-When a method returns `self`,
+The returned object immediately calls the next method.
 
-Python allows another method to be called immediately.
+Flow
+
+```text
+Method 1
+
+↓
+
+returns self
+
+↓
+
+Method 2
+
+↓
+
+returns self
+
+↓
+
+Method 3
+
+↓
+
+returns self
+
+↓
+
+Next Method
+```
 
 ---
 
 # Returning self
 
-The `self` keyword refers to the current object.
-
-Returning `self` means:
+The most important requirement for Method Chaining is
 
 ```python
 return self
 ```
 
-returns the current object reference.
-
 Example
 
 ```python
-class Demo:
+class Student:
 
-    def show(self):
+    def set_name(self, name):
 
-        print("Hello")
+        self.name = name
 
         return self
 ```
 
-Now another method can be called immediately.
+Without
+
+```python
+return self
+```
+
+Method Chaining is not possible.
+
+---
+
+# Fluent Interface
+
+A programming style where methods return the current object to allow continuous method calls is called a **Fluent Interface**.
+
+Many modern frameworks use this design pattern.
+
+Examples include:
+
+- Django ORM
+- Pandas
+- SQLAlchemy
+- PySpark
+- Selenium WebDriver
+
+---
+
+# Method Chaining vs Constructor Chaining
+
+| Method Chaining | Constructor Chaining |
+|-----------------|----------------------|
+| Calls multiple methods | Calls multiple constructors |
+| Uses `return self` | Uses `super()` |
+| Improves readability | Initializes parent objects |
+| Happens after object creation | Happens during object creation |
+
+---
+
+# Real-World Example
+
+Consider Online Shopping.
+
+Instead of writing
+
+```text
+Select Product
+
+Add to Cart
+
+Apply Coupon
+
+Proceed to Checkout
+
+Make Payment
+```
+
+as separate disconnected actions,
+
+many APIs allow
+
+```text
+selectProduct()
+
+↓
+
+addToCart()
+
+↓
+
+applyCoupon()
+
+↓
+
+checkout()
+
+↓
+
+pay()
+```
+
+This resembles Method Chaining.
 
 ---
 
 # Internal Working
 
-Consider
-
-```python
-obj.method1().method2().method3()
-```
-
-Python internally performs
-
 ```text
-method1()
+Object Created
 
 ↓
 
-Returns self
+Method Called
 
 ↓
 
-method2()
+Method Returns self
 
 ↓
 
-Returns self
+Next Method Called
 
 ↓
 
-method3()
+Method Returns self
 
 ↓
 
-Program Ends
-```
+Next Method Called
 
----
+↓
 
-# Real-World Examples
-
-Method Chaining is commonly used in
-
-- Database Query Builders
-- Web Frameworks
-- Data Processing Libraries
-- Configuration APIs
-- Builder Design Pattern
-
-Example
-
-```python
-query.select()\
-     .where()\
-     .order_by()
+Execution Complete
 ```
 
 ---
 
 # Advantages
 
-- Improves readability.
-- Reduces code length.
-- Supports Fluent Interface Design.
-- Easy to maintain.
-- Professional coding style.
+- Cleaner code.
+- Better readability.
+- Reduces repeated object references.
+- Supports Fluent Interfaces.
+- Makes APIs easier to use.
+
+---
+
+# Real-Time Applications
+
+Method Chaining is used in:
+
+- Django ORM
+- Pandas
+- SQLAlchemy
+- Selenium
+- PySpark
+- Machine Learning Libraries
+- REST API Builders
 
 ---
 
@@ -218,10 +331,11 @@ query.select()\
 In this part, we learned:
 
 - Method Chaining
-- Why Method Chaining is required
+- Need for Method Chaining
 - Returning `self`
+- Fluent Interface
+- Method Chaining vs Constructor Chaining
 - Internal Working
-- Real-world applications
 
 
 # Program 1 – Basic Method Chaining
@@ -229,94 +343,6 @@ In this part, we learned:
 ## Problem Statement
 
 Write a Python program to demonstrate Method Chaining.
-
----
-
-## Program
-
-```python
-class Student:
-
-    def display(self):
-
-        print("Display Method")
-
-        return self
-
-    def show(self):
-
-        print("Show Method")
-
-        return self
-
-    def finish(self):
-
-        print("Finish Method")
-
-student = Student()
-
-student.display().show().finish()
-```
-
----
-
-## Output
-
-```text
-Display Method
-Show Method
-Finish Method
-```
-
----
-
-## Explanation
-
-- `display()` executes first.
-- It returns the current object using `return self`.
-- The returned object calls `show()`.
-- `show()` again returns the same object.
-- Finally, `finish()` executes.
-
----
-
-## Dry Run
-
-```text
-Student Object Created
-
-↓
-
-display()
-
-↓
-
-return self
-
-↓
-
-show()
-
-↓
-
-return self
-
-↓
-
-finish()
-
-↓
-
-Program Ends
-```
-
----
-
-# Program 2 – Method Chaining Using Student Details
-
-## Problem Statement
-
-Write a Python program to set and display student details using Method Chaining.
 
 ---
 
@@ -343,6 +369,9 @@ class Student:
 
         print("Age  :", self.age)
 
+        return self
+
+
 student = Student()
 
 student.set_name("Rahul").set_age(21).display()
@@ -361,22 +390,96 @@ Age  : 21
 
 ## Explanation
 
-Each setter method returns the current object.
+Each method returns
 
-Therefore, another method can be called immediately.
+```python
+self
+```
+
+Therefore,
+
+the returned object immediately calls the next method.
 
 ---
 
-# Program 3 – Method Chaining in Calculator
+# Program 2 – Method Chaining Without return self
+
+## Problem Statement
+
+Write a Python program to demonstrate why `return self` is required.
+
+---
+
+## Program
+
+```python
+class Student:
+
+    def set_name(self, name):
+
+        self.name = name
+
+    def set_age(self, age):
+
+        self.age = age
+
+
+student = Student()
+
+student.set_name("Rahul").set_age(21)
+```
+
+---
+
+## Output
+
+```text
+AttributeError:
+'NoneType' object has no attribute 'set_age'
+```
+
+---
+
+## Explanation
+
+`set_name()` returns
+
+```python
+None
+```
+
+Therefore,
+
+Python tries to execute
+
+```python
+None.set_age()
+```
+
+which produces an error.
+
+---
+
+# Program 3 – Calculator using Method Chaining
 
 ## Program
 
 ```python
 class Calculator:
 
+    def __init__(self):
+
+        self.result = 0
+
     def add(self, value):
 
-        self.result = value
+        self.result += value
+
+        return self
+
+    def subtract(self, value):
+
+        self.result -= value
 
         return self
 
@@ -390,9 +493,12 @@ class Calculator:
 
         print("Result :", self.result)
 
+        return self
+
+
 calculator = Calculator()
 
-calculator.add(10).multiply(5).display()
+calculator.add(20).subtract(5).multiply(2).display()
 ```
 
 ---
@@ -400,51 +506,215 @@ calculator.add(10).multiply(5).display()
 ## Output
 
 ```text
-Result : 50
+Result : 30
 ```
 
 ---
 
 ## Explanation
 
-Execution Flow
+Execution
 
 ```text
-add()
+0
 
 ↓
 
-Result = 10
++20
 
 ↓
 
-multiply()
+20
 
 ↓
 
-Result = 50
+-5
 
 ↓
 
-display()
+15
+
+↓
+
+×2
+
+↓
+
+30
 ```
 
 ---
 
-# Program 4 – Method Chaining Without Returning self
+# Program 4 – Bank Account Example
+
+## Program
+
+```python
+class Bank:
+
+    def deposit(self, amount):
+
+        print("Deposited :", amount)
+
+        return self
+
+    def withdraw(self, amount):
+
+        print("Withdrawn :", amount)
+
+        return self
+
+    def balance(self):
+
+        print("Balance Checked")
+
+        return self
+
+
+bank = Bank()
+
+bank.deposit(5000).withdraw(2000).balance()
+```
+
+---
+
+## Output
+
+```text
+Deposited : 5000
+
+Withdrawn : 2000
+
+Balance Checked
+```
+
+---
+
+# Program 5 – Student Information Example
+
+## Program
+
+```python
+class Student:
+
+    def name(self, value):
+
+        self.student_name = value
+
+        return self
+
+    def course(self, value):
+
+        self.student_course = value
+
+        return self
+
+    def marks(self, value):
+
+        self.student_marks = value
+
+        return self
+
+    def display(self):
+
+        print(self.student_name)
+
+        print(self.student_course)
+
+        print(self.student_marks)
+
+        return self
+
+
+Student().name("Rahul").course("Python").marks(95).display()
+```
+
+---
+
+## Output
+
+```text
+Rahul
+
+Python
+
+95
+```
+
+---
+
+# Program 6 – Employee Example
+
+## Program
+
+```python
+class Employee:
+
+    def set_name(self, name):
+
+        self.name = name
+
+        return self
+
+    def set_salary(self, salary):
+
+        self.salary = salary
+
+        return self
+
+    def show(self):
+
+        print(self.name)
+
+        print(self.salary)
+
+        return self
+
+
+Employee().set_name("Rahul").set_salary(50000).show()
+```
+
+---
+
+## Output
+
+```text
+Rahul
+
+50000
+```
+
+---
+
+# Program 7 – Method Chaining using Object Reference
 
 ## Program
 
 ```python
 class Demo:
 
-    def show(self):
+    def one(self):
 
-        print("Hello")
+        print("Method One")
 
-demo = Demo()
+        return self
 
-demo.show().show()
+    def two(self):
+
+        print("Method Two")
+
+        return self
+
+    def three(self):
+
+        print("Method Three")
+
+        return self
+
+
+obj = Demo()
+
+obj.one().two().three()
 ```
 
 ---
@@ -452,39 +722,197 @@ demo.show().show()
 ## Output
 
 ```text
-Hello
+Method One
 
-AttributeError:
-'NoneType' object has no attribute 'show'
+Method Two
+
+Method Three
 ```
 
 ---
 
 ## Explanation
 
-The `show()` method does not return `self`.
+Each method returns the same object,
 
-By default, every Python function returns `None`.
+allowing continuous method calls.
 
-Therefore,
+---
 
-```python
-demo.show()
-```
+# Program 8 – Fluent Interface Example
 
-returns
+## Program
 
 ```python
-None
+class Query:
+
+    def select(self):
+
+        print("SELECT")
+
+        return self
+
+    def where(self):
+
+        print("WHERE")
+
+        return self
+
+    def order_by(self):
+
+        print("ORDER BY")
+
+        return self
+
+
+Query().select().where().order_by()
 ```
 
-Then Python tries
+---
+
+## Output
+
+```text
+SELECT
+
+WHERE
+
+ORDER BY
+```
+
+---
+
+## Explanation
+
+This resembles the Fluent Interface used in many frameworks such as Django ORM and SQLAlchemy.
+
+---
+
+# Program 9 – Method Chaining with String Operations
+
+## Program
 
 ```python
-None.show()
+class Message:
+
+    def __init__(self):
+
+        self.text = ""
+
+    def add(self, word):
+
+        self.text += word + " "
+
+        return self
+
+    def display(self):
+
+        print(self.text)
+
+        return self
+
+
+Message().add("Python").add("is").add("Awesome").display()
 ```
 
-which produces an `AttributeError`.
+---
+
+## Output
+
+```text
+Python is Awesome
+```
+
+---
+
+# Program 10 – Real-Time Builder Pattern Example
+
+## Program
+
+```python
+class Pizza:
+
+    def size(self, value):
+
+        print("Size :", value)
+
+        return self
+
+    def cheese(self):
+
+        print("Extra Cheese")
+
+        return self
+
+    def toppings(self, value):
+
+        print("Toppings :", value)
+
+        return self
+
+    def order(self):
+
+        print("Order Confirmed")
+
+        return self
+
+
+Pizza().size("Large").cheese().toppings("Mushroom").order()
+```
+
+---
+
+## Output
+
+```text
+Size : Large
+
+Extra Cheese
+
+Toppings : Mushroom
+
+Order Confirmed
+```
+
+---
+
+## Explanation
+
+Builder-style APIs commonly use Method Chaining.
+
+Each method configures the object and returns the same object.
+
+---
+
+# Dry Run
+
+```text
+Object Created
+
+↓
+
+Method 1 Called
+
+↓
+
+Returns self
+
+↓
+
+Method 2 Called
+
+↓
+
+Returns self
+
+↓
+
+Method 3 Called
+
+↓
+
+Execution Completed
+```
 
 ---
 
@@ -497,7 +925,25 @@ Student Object
 
         ▼
 
-+---------------------------+
++----------------------------+
+
+name
+
+↓
+
+Rahul
+
+age
+
+↓
+
+21
+
+----------------------------
+
+set_name()
+
+set_age()
 
 display()
 
@@ -505,88 +951,29 @@ display()
 
 return self
 
-↓
-
-show()
-
-↓
-
-return self
-
-↓
-
-finish()
-
-+---------------------------+
++----------------------------+
 ```
-
----
-
-# Internal Working
-
-```text
-Object Created
-
-↓
-
-Method Executes
-
-↓
-
-return self
-
-↓
-
-Current Object Returned
-
-↓
-
-Next Method Executes
-
-↓
-
-Chain Continues
-```
-
----
-
-# Fluent Interface
-
-Method Chaining is the foundation of the **Fluent Interface Design Pattern**.
-
-A Fluent Interface allows multiple methods to be called in a readable and expressive manner.
-
-Example
-
-```python
-query.select()\
-     .where()\
-     .order_by()\
-     .limit()
-```
-
-Many popular Python libraries use this approach.
 
 ---
 
 # Advantages
 
-- Cleaner code.
-- Better readability.
-- Professional coding style.
-- Easy configuration.
-- Supports reusable APIs.
+- Improves readability.
+- Produces cleaner code.
 - Reduces repeated object references.
+- Supports Fluent Interfaces.
+- Makes APIs intuitive.
+- Encourages reusable code.
 
 ---
 
 # Best Practices
 
-- Always return `self` when chaining is required.
-- Keep methods focused on a single responsibility.
-- Avoid creating very long chains that reduce readability.
+- Always return `self` if chaining is required.
+- Keep methods focused on a single task.
 - Use meaningful method names.
-- Use chaining only where it improves clarity.
+- Avoid overly long chains that reduce readability.
+- Validate input before returning `self`.
 
 ---
 
@@ -594,65 +981,41 @@ Many popular Python libraries use this approach.
 
 ## Mistake 1
 
-Forgetting `return self`
-
-❌ Incorrect
+Forgetting to return `self`.
 
 ```python
-class Demo:
+def set_name(self, name):
 
-    def show(self):
-
-        print("Hello")
+    self.name = name
 ```
 
----
-
-✅ Correct
-
-```python
-class Demo:
-
-    def show(self):
-
-        print("Hello")
-
-        return self
-```
+Method Chaining will fail.
 
 ---
 
 ## Mistake 2
 
-Returning another object instead of `self`
+Returning another object instead of `self`.
 
-Method chaining requires returning the current object.
+If another object is returned,
+
+subsequent methods may not exist.
 
 ---
 
 ## Mistake 3
 
-Creating excessively long chains
+Performing unrelated operations inside chained methods.
 
-```python
-obj.a().b().c().d().e().f().g()
-```
-
-Although valid, very long chains may reduce readability.
+Each method should perform one logical task.
 
 ---
 
-# Real-Time Applications
+## Mistake 4
 
-Method Chaining is used in:
+Creating excessively long chains.
 
-- Pandas Data Analysis
-- SQL Query Builders
-- Django ORM
-- Flask Extensions
-- Builder Design Pattern
-- Machine Learning Pipelines
-- Configuration APIs
+Break long chains into multiple statements if readability suffers.
 
 ---
 
@@ -662,15 +1025,85 @@ Method Chaining is used in:
 
 ### Answer
 
-Method Chaining is the process of calling multiple methods continuously using the same object.
+Method Chaining is the technique of calling multiple methods on the same object in a single statement by returning `self` from each method.
 
 ---
 
-## 2. How is Method Chaining achieved?
+## 2. Why is `return self` required?
 
 ### Answer
 
-By returning the current object using:
+It returns the current object so that the next method can be called immediately.
+
+---
+
+## 3. What happens if `return self` is omitted?
+
+### Answer
+
+The method returns `None` by default, causing the next chained method call to fail with an `AttributeError`.
+
+---
+
+## 4. What is a Fluent Interface?
+
+### Answer
+
+A Fluent Interface is a design style where methods return the current object, enabling readable chained method calls.
+
+---
+
+## 5. What is the difference between Method Chaining and Constructor Chaining?
+
+### Answer
+
+Method Chaining links multiple method calls using `return self`.
+
+Constructor Chaining links constructors using `super()` during object initialization.
+
+---
+
+## 6. Which frameworks commonly use Method Chaining?
+
+### Answer
+
+- Django ORM
+- Pandas
+- SQLAlchemy
+- Selenium
+- PySpark
+
+---
+
+## 7. Can Method Chaining improve code readability?
+
+### Answer
+
+Yes. It reduces repeated object references and makes related operations appear together.
+
+---
+
+## 8. Is Method Chaining compulsory?
+
+### Answer
+
+No. It is a design choice used to improve readability and API usability.
+
+---
+
+## 9. Can Method Chaining be used without inheritance?
+
+### Answer
+
+Yes. It only requires methods to return `self`.
+
+---
+
+## 10. What is the most important requirement for Method Chaining?
+
+### Answer
+
+Every chained method must return the current object using:
 
 ```python
 return self
@@ -678,60 +1111,35 @@ return self
 
 ---
 
-## 3. Why is `return self` required?
-
-### Answer
-
-It returns the current object so that another method can be called immediately.
-
----
-
-## 4. What happens if a method does not return `self`?
-
-### Answer
-
-The method returns `None` by default, causing an `AttributeError` if another method is chained.
-
----
-
-## 5. What is a Fluent Interface?
-
-### Answer
-
-A Fluent Interface is a design pattern that uses Method Chaining to create readable and expressive APIs.
-
----
-
 # Practice Programs
 
-1. Create a Student class using Method Chaining.
-2. Create a Calculator using Method Chaining.
-3. Create an Employee class with chained setter methods.
-4. Demonstrate the error caused by omitting `return self`.
-5. Create a Product class using Fluent Interface style.
+1. Create a Calculator using Method Chaining.
+2. Create a Student class using chained setter methods.
+3. Create a BankAccount class using Method Chaining.
+4. Create a Builder-style Pizza class.
+5. Demonstrate why Method Chaining fails without `return self`.
 
 ---
 
 # Quick Revision
 
-- Method Chaining calls multiple methods using one object.
-- `return self` is essential.
-- `self` returns the current object.
-- Without `return self`, chaining fails.
-- Method Chaining improves readability and code organization.
-- Widely used in modern Python libraries.
+- Method Chaining calls multiple methods in one statement.
+- Each method returns `self`.
+- `return self` is mandatory for chaining.
+- Method Chaining improves readability.
+- Fluent Interfaces are based on Method Chaining.
+- Commonly used in Django ORM, Pandas, SQLAlchemy, and Selenium.
 
 ---
 
 # Chapter Summary
 
-In this chapter, we learned:
+In this chapter, you learned:
 
 - Method Chaining
-- Why Method Chaining is used
 - Returning `self`
-- Internal Working
 - Fluent Interface
+- Method Chaining vs Constructor Chaining
 - Practical Programs
 - Best Practices
 - Common Mistakes
