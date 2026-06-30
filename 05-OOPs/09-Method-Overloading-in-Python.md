@@ -9,12 +9,13 @@
 5. What is Method Overloading?
 6. Does Python Support Method Overloading?
 7. Why Python Does Not Support Method Overloading
-8. How to Achieve Method Overloading in Python
-9. Default Arguments
-10. Variable-Length Arguments (*args)
-11. Keyword Arguments (**kwargs)
-12. Method Overriding vs Method Overloading
-13. Summary
+8. How Python Achieves Method Overloading
+9. Using Default Arguments
+10. Using *args
+11. Using **kwargs
+12. Method Overloading vs Method Overriding
+13. Internal Working
+14. Summary
 
 ---
 
@@ -22,11 +23,11 @@
 
 After completing this chapter, you will be able to:
 
-- Understand methods in Python.
 - Understand Method Overloading.
 - Explain why Python does not support true Method Overloading.
-- Simulate Method Overloading using Python features.
+- Simulate Method Overloading using Python techniques.
 - Differentiate Method Overloading and Method Overriding.
+- Implement flexible methods using default arguments, *args, and **kwargs.
 
 ---
 
@@ -38,35 +39,56 @@ Before learning this chapter, you should know:
 - Objects
 - Methods
 - Constructors
-- Instance Variables
+- Constructor Overloading
+- Polymorphism
 
 ---
 
 # Introduction
 
-Methods define the behavior of an object.
+Methods define the behavior of objects.
 
-Sometimes, we want to perform the same operation using different numbers or types of arguments.
+Sometimes,
+
+we want the same method to perform different tasks depending on the number or type of arguments supplied.
 
 For example,
 
-A calculator may perform addition using:
+a Calculator may perform addition using
 
-- Two numbers
-- Three numbers
-- Four numbers
+```text
+add()
 
-In Java, this is achieved using **Method Overloading**.
+add(a)
 
-Python, however, follows a different approach.
+add(a, b)
+
+add(a, b, c)
+```
+
+In Java,
+
+this is called **Method Overloading**.
+
+Python follows a different approach.
+
+Instead of supporting multiple methods with the same name,
+
+Python provides flexible programming features such as
+
+- Default Arguments
+- Variable-Length Arguments (`*args`)
+- Keyword Arguments (`**kwargs`)
+
+These features make Method Overloading unnecessary.
 
 ---
 
 # What is a Method?
 
-A method is a function defined inside a class.
+## Definition
 
-It describes the behavior of an object.
+A Method is a function defined inside a class that performs a specific operation on an object.
 
 Example
 
@@ -74,12 +96,11 @@ Example
 class Student:
 
     def display(self):
-        print("Welcome")
+
+        print("Student Details")
 ```
 
-Here,
-
-`display()` is a method.
+Methods define the behavior of objects.
 
 ---
 
@@ -87,21 +108,29 @@ Here,
 
 ## Definition
 
-Method Overloading is the process of creating multiple methods with the same name but different parameter lists.
+Method Overloading is the process of defining multiple methods with the **same name** but **different parameter lists** within the same class.
 
-Example in Java
+The appropriate method is selected based on the arguments supplied during the method call.
+
+---
+
+# Example (Java)
 
 ```java
-add()
+class Calculator {
 
-add(int a)
+    void add() {}
 
-add(int a, int b)
+    void add(int a) {}
 
-add(int a, int b, int c)
+    void add(int a, int b) {}
+
+    void add(int a, int b, int c) {}
+
+}
 ```
 
-The compiler automatically calls the appropriate method based on the arguments passed.
+The compiler automatically selects the appropriate method.
 
 ---
 
@@ -111,11 +140,13 @@ The compiler automatically calls the appropriate method based on the arguments p
 
 **No.**
 
-Python **does not support true Method Overloading**.
+Python does **not support true Method Overloading**.
 
-Only one method with a particular name can exist inside a class.
+A class can have only one method with a particular name.
 
-If multiple methods with the same name are defined, the last method replaces the previous ones.
+If multiple methods with the same name are declared,
+
+the last definition replaces all previous definitions.
 
 ---
 
@@ -125,9 +156,11 @@ If multiple methods with the same name are defined, the last method replaces the
 class Demo:
 
     def show(self):
+
         print("First Method")
 
     def show(self, name):
+
         print("Second Method")
 ```
 
@@ -141,29 +174,38 @@ The first method is overwritten.
 
 Python is a dynamically typed language.
 
-Instead of checking method signatures like Java, Python provides more flexible features such as:
+It does not differentiate methods based on
 
-- Default Arguments
-- Variable-Length Arguments (`*args`)
-- Keyword Arguments (`**kwargs`)
+- Number of Parameters
+- Type of Parameters
 
-These features remove the need for traditional method overloading.
+Instead,
 
----
-
-# How to Achieve Method Overloading in Python
-
-Python simulates Method Overloading using:
+Python encourages writing flexible methods using
 
 - Default Arguments
 - `*args`
 - `**kwargs`
 
-These techniques allow one method to handle different numbers of arguments.
+This makes separate overloaded methods unnecessary.
+
+---
+
+# How Python Achieves Method Overloading
+
+Although Python does not support true Method Overloading,
+
+similar behavior is achieved using:
+
+- Default Arguments
+- Variable-Length Arguments (`*args`)
+- Keyword Arguments (`**kwargs`)
 
 ---
 
 # Using Default Arguments
+
+Default arguments make parameters optional.
 
 Example
 
@@ -171,22 +213,23 @@ Example
 class Calculator:
 
     def add(self, a, b=0):
-        print(a + b)
+
+        return a + b
 ```
 
-Usage
+Method Calls
 
 ```python
-cal = Calculator()
+calculator.add(10)
 
-cal.add(10)
-
-cal.add(10, 20)
+calculator.add(10, 20)
 ```
 
 ---
 
 # Using *args
+
+`*args` accepts any number of positional arguments.
 
 Example
 
@@ -194,42 +237,46 @@ Example
 class Calculator:
 
     def add(self, *numbers):
-        print(sum(numbers))
+
+        print(numbers)
 ```
 
-Usage
+Example Calls
 
 ```python
-cal = Calculator()
+calculator.add()
 
-cal.add(10)
+calculator.add(10)
 
-cal.add(10,20)
+calculator.add(10, 20)
 
-cal.add(10,20,30)
+calculator.add(10, 20, 30)
 ```
 
 ---
 
 # Using **kwargs
 
+`**kwargs` accepts any number of keyword arguments.
+
 Example
 
 ```python
 class Student:
 
-    def details(self, **data):
-        print(data)
+    def details(self, **kwargs):
+
+        print(kwargs)
 ```
 
-Usage
+Example Calls
 
 ```python
-student = Student()
-
 student.details(name="Rahul")
 
 student.details(name="Rahul", age=21)
+
+student.details(name="Rahul", age=21, course="Python")
 ```
 
 ---
@@ -238,16 +285,64 @@ student.details(name="Rahul", age=21)
 
 | Method Overloading | Method Overriding |
 |--------------------|-------------------|
-| Same class | Parent and Child class |
-| Same method name | Same method name |
-| Different parameters | Same parameters |
-| Not supported directly in Python | Fully supported in Python |
+| Same Class | Parent and Child Classes |
+| Same Method Name | Same Method Name |
+| Different Parameter Lists | Same Parameter List |
+| Compile-Time Concept | Run-Time Concept |
+| Not directly supported in Python | Fully supported in Python |
+
+---
+
+# Internal Working
+
+```text
+Method Called
+
+↓
+
+Python Searches Method Name
+
+↓
+
+Last Method Definition Found
+
+↓
+
+Method Executes
+```
+
+If duplicate method names exist,
+
+Python keeps only the last definition.
+
+---
+
+# Advantages of Python's Approach
+
+- Flexible programming.
+- Less code duplication.
+- Easy maintenance.
+- Cleaner class design.
+- Supports dynamic argument handling.
+
+---
+
+# Real-Time Applications
+
+Flexible methods are commonly used in:
+
+- Calculator Applications
+- Banking Systems
+- Employee Management Systems
+- Inventory Systems
+- Data Processing Libraries
+- Web Frameworks
 
 ---
 
 # Summary
 
-In this part, you learned:
+In this part, we learned:
 
 - Methods
 - Method Overloading
@@ -255,7 +350,8 @@ In this part, you learned:
 - Default Arguments
 - `*args`
 - `**kwargs`
-- Difference between Method Overloading and Method Overriding
+- Method Overloading vs Method Overriding
+- Internal Working
 
 
 # Program 1 – Demonstrating That Python Does Not Support True Method Overloading
@@ -269,18 +365,19 @@ Write a Python program to demonstrate that Python does not support true Method O
 ## Program
 
 ```python
-class Demo:
+class Calculator:
 
-    def show(self):
+    def add(self):
         print("First Method")
 
-    def show(self, name):
+    def add(self, a):
         print("Second Method")
-        print("Name :", name)
+        print("Value :", a)
 
-obj = Demo()
 
-obj.show("Rahul")
+calculator = Calculator()
+
+calculator.add(10)
 ```
 
 ---
@@ -289,44 +386,22 @@ obj.show("Rahul")
 
 ```text
 Second Method
-Name : Rahul
+Value : 10
 ```
 
 ---
 
 ## Explanation
 
-Although two methods with the same name are written, Python keeps only the last method.
+Although two methods with the same name are declared,
+
+Python keeps only the last method definition.
 
 The first method is overwritten.
 
 ---
 
-## Internal Working
-
-```text
-Demo Class Loaded
-
-↓
-
-First show() Method Created
-
-↓
-
-Second show() Method Created
-
-↓
-
-First Method Replaced
-
-↓
-
-Only Second Method Exists
-```
-
----
-
-# Program 2 – Method Overloading Using Default Arguments
+# Program 2 – Method Overloading using Default Arguments
 
 ## Problem Statement
 
@@ -341,13 +416,14 @@ class Calculator:
 
     def add(self, a, b=0):
 
-        print("Result :", a + b)
+        return a + b
 
-cal = Calculator()
 
-cal.add(10)
+calculator = Calculator()
 
-cal.add(10, 20)
+print(calculator.add(10))
+
+print(calculator.add(10, 20))
 ```
 
 ---
@@ -355,24 +431,32 @@ cal.add(10, 20)
 ## Output
 
 ```text
-Result : 10
+10
 
-Result : 30
+30
 ```
 
 ---
 
 ## Explanation
 
-If the second argument is not provided, Python automatically uses the default value.
+When only one argument is supplied,
+
+the default value of
+
+```python
+b = 0
+```
+
+is used.
 
 ---
 
-# Program 3 – Method Overloading Using *args
+# Program 3 – Method Overloading using *args
 
 ## Problem Statement
 
-Write a Python program using `*args`.
+Write a Python program using *args.
 
 ---
 
@@ -383,17 +467,18 @@ class Calculator:
 
     def add(self, *numbers):
 
-        print("Sum :", sum(numbers))
+        print(sum(numbers))
 
-cal = Calculator()
 
-cal.add(10)
+calculator = Calculator()
 
-cal.add(10, 20)
+calculator.add()
 
-cal.add(10, 20, 30)
+calculator.add(10)
 
-cal.add(10, 20, 30, 40)
+calculator.add(10, 20)
+
+calculator.add(10, 20, 30)
 ```
 
 ---
@@ -401,35 +486,44 @@ cal.add(10, 20, 30, 40)
 ## Output
 
 ```text
-Sum : 10
+0
 
-Sum : 30
+10
 
-Sum : 60
+30
 
-Sum : 100
+60
 ```
 
 ---
 
 ## Explanation
 
-`*args` accepts any number of positional arguments.
+`*numbers` stores all positional arguments inside a tuple.
 
-The `sum()` function calculates the total of all arguments.
+The built-in
+
+```python
+sum()
+```
+
+function calculates the total.
 
 ---
 
-# Program 4 – Method Overloading Using **kwargs
+# Program 4 – Method Overloading using **kwargs
 
 ## Program
 
 ```python
 class Student:
 
-    def details(self, **data):
+    def details(self, **kwargs):
 
-        print(data)
+        for key, value in kwargs.items():
+
+            print(key, ":", value)
+
 
 student = Student()
 
@@ -445,41 +539,47 @@ student.details(name="Rahul", age=21, course="Python")
 ## Output
 
 ```text
-{'name': 'Rahul'}
+name : Rahul
 
-{'name': 'Rahul', 'age': 21}
+name : Rahul
+age : 21
 
-{'name': 'Rahul', 'age': 21, 'course': 'Python'}
+name : Rahul
+age : 21
+course : Python
 ```
 
 ---
 
 ## Explanation
 
-`**kwargs` accepts any number of keyword arguments.
+`**kwargs` stores keyword arguments inside a dictionary.
 
 ---
 
-# Program 5 – Combining Default Arguments and *args
+# Program 5 – Using Default Arguments and *args Together
 
 ## Program
 
 ```python
-class Employee:
+class Calculator:
 
-    def salary(self, basic=0, *allowances):
+    def add(self, a=0, *numbers):
 
-        total = basic + sum(allowances)
+        total = a + sum(numbers)
 
-        print("Total Salary :", total)
+        print(total)
 
-emp = Employee()
 
-emp.salary()
+calculator = Calculator()
 
-emp.salary(25000)
+calculator.add()
 
-emp.salary(25000, 3000, 2000)
+calculator.add(10)
+
+calculator.add(10, 20)
+
+calculator.add(10, 20, 30)
 ```
 
 ---
@@ -487,23 +587,234 @@ emp.salary(25000, 3000, 2000)
 ## Output
 
 ```text
-Total Salary : 0
+0
 
-Total Salary : 25000
+10
 
-Total Salary : 30000
+30
+
+60
 ```
+
+---
+
+## Explanation
+
+The first parameter has a default value.
+
+Remaining values are stored inside `numbers`.
+
+---
+
+# Program 6 – Student Information Example
+
+## Program
+
+```python
+class Student:
+
+    def details(self, name, age=18, course="Python"):
+
+        print("Name   :", name)
+
+        print("Age    :", age)
+
+        print("Course :", course)
+
+
+student = Student()
+
+student.details("Rahul")
+
+student.details("Priya", 21)
+
+student.details("Akhil", 22, "Java")
+```
+
+---
+
+## Output
+
+```text
+Name   : Rahul
+Age    : 18
+Course : Python
+
+Name   : Priya
+Age    : 21
+Course : Python
+
+Name   : Akhil
+Age    : 22
+Course : Java
+```
+
+---
+
+## Explanation
+
+Default arguments provide flexibility without creating multiple methods.
+
+---
+
+# Program 7 – Employee Details using **kwargs
+
+## Program
+
+```python
+class Employee:
+
+    def display(self, **details):
+
+        for key, value in details.items():
+
+            print(key, ":", value)
+
+
+employee = Employee()
+
+employee.display(name="Rahul", salary=50000, department="HR")
+```
+
+---
+
+## Output
+
+```text
+name : Rahul
+salary : 50000
+department : HR
+```
+
+---
+
+## Explanation
+
+Keyword arguments are useful when different objects contain different information.
+
+---
+
+# Program 8 – Calculator using Variable Number of Arguments
+
+## Program
+
+```python
+class Calculator:
+
+    def multiply(self, *numbers):
+
+        result = 1
+
+        for number in numbers:
+
+            result *= number
+
+        print(result)
+
+
+calculator = Calculator()
+
+calculator.multiply(2, 3)
+
+calculator.multiply(2, 3, 4)
+```
+
+---
+
+## Output
+
+```text
+6
+
+24
+```
+
+---
+
+## Explanation
+
+`*args` allows the method to work with any number of arguments.
+
+---
+
+# Program 9 – Flexible Method
+
+## Program
+
+```python
+class Demo:
+
+    def show(self, *args, **kwargs):
+
+        print("Positional :", args)
+
+        print("Keyword :", kwargs)
+
+
+demo = Demo()
+
+demo.show(10, 20, name="Rahul", age=21)
+```
+
+---
+
+## Output
+
+```text
+Positional : (10, 20)
+
+Keyword : {'name': 'Rahul', 'age': 21}
+```
+
+---
+
+## Explanation
+
+Methods can accept both positional and keyword arguments together.
+
+---
+
+# Program 10 – Banking Example
+
+## Program
+
+```python
+class Bank:
+
+    def deposit(self, amount=0):
+
+        print("Deposited :", amount)
+
+
+bank = Bank()
+
+bank.deposit()
+
+bank.deposit(5000)
+```
+
+---
+
+## Output
+
+```text
+Deposited : 0
+
+Deposited : 5000
+```
+
+---
+
+## Explanation
+
+Default arguments make methods more flexible and eliminate the need for multiple overloaded methods.
 
 ---
 
 # Dry Run
 
 ```text
-Calculator Class Loaded
-
-↓
-
-Object Created
+Method Called
 
 ↓
 
@@ -511,11 +822,15 @@ Arguments Passed
 
 ↓
 
+Method Parameters Matched
+
+↓
+
 Method Executes
 
 ↓
 
-Result Displayed
+Output Produced
 ```
 
 ---
@@ -529,34 +844,35 @@ Calculator Object
 
         ▼
 
-+-----------------------+
++---------------------------+
 
-| add()                 |
+add()
 
-| Object Reference      |
+multiply()
 
-+-----------------------+
++---------------------------+
 ```
 
 ---
 
 # Advantages
 
-- Flexible method implementation.
-- Reduces duplicate code.
-- Handles different argument combinations.
-- Improves code readability.
-- Easy to maintain.
+- Flexible methods.
+- Cleaner code.
+- Less duplication.
+- Easy maintenance.
+- Supports optional arguments.
+- Improves readability.
 
 ---
 
 # Best Practices
 
 - Use default arguments when only a few parameters are optional.
-- Use `*args` when the number of positional arguments is unknown.
-- Use `**kwargs` when keyword arguments vary.
-- Avoid writing unnecessary complex methods.
-- Use meaningful method names.
+- Use `*args` for variable-length positional arguments.
+- Use `**kwargs` for optional keyword arguments.
+- Keep methods focused on a single responsibility.
+- Validate input before processing.
 
 ---
 
@@ -569,55 +885,46 @@ Writing multiple methods with the same name.
 ❌ Incorrect
 
 ```python
-class Demo:
+def show():
+    pass
 
-    def show(self):
-        pass
-
-    def show(self, name):
-        pass
+def show(name):
+    pass
 ```
 
-Only the second method exists.
+Only the last method remains.
 
 ---
 
 ## Mistake 2
 
-Using `*args` when default arguments are sufficient.
+Using `*args` when fixed parameters are sufficient.
 
-Prefer simpler code whenever possible.
+Choose the simplest approach that meets the requirement.
 
 ---
 
 ## Mistake 3
 
-Forgetting that `*args` stores values as a tuple.
+Using `**kwargs` without checking required keys.
 
-```python
-def demo(*args):
-
-    print(type(args))
-```
-
-Output
-
-```text
-<class 'tuple'>
-```
+Always validate expected keys before using them.
 
 ---
 
-# Real-Time Applications
+## Mistake 4
 
-Method overloading techniques are used in:
+Confusing Method Overloading with Method Overriding.
 
-- Calculator Applications
-- Banking Software
-- Payroll Systems
-- Student Management Systems
-- Billing Applications
-- Data Processing Programs
+Method Overloading
+
+- Same class
+- Different parameter lists
+
+Method Overriding
+
+- Parent and Child classes
+- Same method signature
 
 ---
 
@@ -627,7 +934,7 @@ Method overloading techniques are used in:
 
 ### Answer
 
-Method Overloading is the process of defining multiple methods with the same name but different parameter lists.
+Method Overloading is the process of creating multiple methods with the same name but different parameter lists.
 
 ---
 
@@ -645,15 +952,15 @@ Python allows only one method with a given name inside a class.
 
 ### Answer
 
-Python is dynamically typed and provides flexible alternatives such as default arguments, `*args`, and `**kwargs`.
+Python is dynamically typed and instead provides default arguments, `*args`, and `**kwargs` for flexible method definitions.
 
 ---
 
-## 4. How can Method Overloading be achieved in Python?
+## 4. How can Method Overloading be simulated in Python?
 
 ### Answer
 
-By using:
+Using:
 
 - Default Arguments
 - `*args`
@@ -661,65 +968,85 @@ By using:
 
 ---
 
-## 5. What is the purpose of `*args`?
+## 5. What does `*args` store?
 
 ### Answer
 
-It accepts any number of positional arguments.
+A tuple containing positional arguments.
 
 ---
 
-## 6. What is the purpose of `**kwargs`?
+## 6. What does `**kwargs` store?
 
 ### Answer
 
-It accepts any number of keyword arguments.
+A dictionary containing keyword arguments.
 
 ---
 
-## 7. What is the difference between Method Overloading and Method Overriding?
+## 7. What happens if two methods have the same name?
 
 ### Answer
 
-Method Overloading uses the same method name with different parameter lists.
+The last method definition replaces all previous ones.
 
-Method Overriding redefines a parent class method in a child class using the same method signature.
+---
+
+## 8. What is the difference between Method Overloading and Method Overriding?
+
+### Answer
+
+Method Overloading occurs within the same class using different parameter lists.
+
+Method Overriding occurs between parent and child classes using the same method signature.
+
+---
+
+## 9. When should you use default arguments?
+
+### Answer
+
+When only a few parameters are optional and predictable.
+
+---
+
+## 10. Give a real-world example of Method Overloading in Python.
+
+### Answer
+
+Calculator methods, Student information methods, Banking operations, Product configuration, and Employee management methods that accept optional parameters.
 
 ---
 
 # Practice Programs
 
-1. Create a Calculator class using default arguments.
-2. Create a Calculator class using `*args`.
+1. Create a Calculator using default arguments.
+2. Create a Student class using `*args`.
 3. Create an Employee class using `**kwargs`.
-4. Simulate method overloading using optional parameters.
-5. Write a program that accepts any number of integers and displays their sum.
+4. Create a Product class using both `*args` and `**kwargs`.
+5. Demonstrate why multiple methods with the same name do not work in Python.
 
 ---
 
 # Quick Revision
 
-- Python does not support true Method Overloading.
-- Only one method with a given name exists in a class.
-- The last method definition replaces previous ones.
-- Use default arguments for optional parameters.
-- Use `*args` for variable positional arguments.
-- Use `**kwargs` for variable keyword arguments.
-- Method Overriding is supported in Python.
+- Python supports only one method with a given name.
+- Default arguments simulate optional parameters.
+- `*args` stores positional arguments in a tuple.
+- `**kwargs` stores keyword arguments in a dictionary.
+- Method Overloading is simulated, not directly supported.
 
 ---
 
 # Chapter Summary
 
-In this chapter, you learned:
+In this chapter, we learned:
 
-- Methods
 - Method Overloading
 - Why Python does not support true Method Overloading
 - Default Arguments
 - `*args`
 - `**kwargs`
-- Difference between Method Overloading and Method Overriding
 - Practical Programs
 - Best Practices
 - Common Mistakes
