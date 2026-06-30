@@ -1,380 +1,337 @@
-# Object-Oriented Programming (OOPs) in Python
+# Object-Oriented Programming (OOP) in Python
 
-## Learning Objectives
+## Table of Contents
+
+1. Learning Objectives
+2. Prerequisites
+3. Introduction
+4. Programming Paradigms
+5. What is Procedural Programming?
+6. Limitations of Procedural Programming
+7. Why Object-Oriented Programming?
+8. What is Object-Oriented Programming?
+9. Real-World Analogy
+10. Features of OOP
+11. Four Pillars of OOP
+12. Advantages of OOP
+13. Summary
+
+---
+
+# Learning Objectives
 
 After completing this chapter, you will be able to:
 
-- Understand Object-Oriented Programming (OOP).
-- Explain why OOP is required.
-- Understand Objects and Classes.
-- Learn the advantages of OOP.
+- Understand Object-Oriented Programming.
+- Explain why OOP was introduced.
+- Differentiate Procedural Programming and OOP.
+- Understand the basic principles of OOP.
 - Identify real-world examples of OOP.
-- Create simple classes and objects in Python.
+- Understand the four pillars of OOP.
+
+---
+
+# Prerequisites
+
+Before learning this chapter, you should know:
+
+- Variables
+- Data Types
+- Functions
+- Control Statements
+- Operators
 
 ---
 
 # Introduction
 
-Object-Oriented Programming (OOP) is one of the most important programming paradigms.
+As software applications become larger and more complex, writing programs using only functions becomes difficult.
 
-Python supports Object-Oriented Programming, which helps developers build modular, reusable, and maintainable software.
+Consider applications like:
 
-Instead of writing programs as a collection of functions, OOP organizes programs using **objects** and **classes**.
+- Banking System
+- Hospital Management System
+- Railway Reservation System
+- E-Commerce Website
+- Social Media Applications
 
-Almost every modern software application uses Object-Oriented Programming.
+These applications contain thousands or even millions of lines of code.
+
+Managing such large applications using only functions becomes difficult because:
+
+- Code becomes lengthy.
+- Code duplication increases.
+- Maintenance becomes difficult.
+- Debugging becomes time-consuming.
+- Reusability becomes limited.
+
+To overcome these problems, **Object-Oriented Programming (OOP)** was introduced.
+
+OOP organizes programs around **objects** rather than functions, making software easier to design, maintain, and extend.
+
+---
+
+# Programming Paradigms
+
+A **Programming Paradigm** is a style or approach used to write programs.
+
+Some common programming paradigms are:
+
+- Procedural Programming
+- Object-Oriented Programming
+- Functional Programming
+- Event-Driven Programming
+
+In this chapter, we focus on **Object-Oriented Programming (OOP)**.
+
+---
+
+# What is Procedural Programming?
+
+Procedural Programming is a programming paradigm in which a program is divided into a collection of functions.
+
+Each function performs a specific task.
+
+Example:
+
+```text
+Student Management System
+
+↓
+
+Input Student Details
+
+↓
+
+Calculate Marks
+
+↓
+
+Display Result
+```
+
+The focus is on **functions** rather than **objects**.
+
+Examples of procedural programming languages include:
+
+- C
+- Pascal
+
+Python also supports procedural programming.
+
+---
+
+# Limitations of Procedural Programming
+
+Although procedural programming is suitable for small programs, it has limitations when building large applications.
+
+Some common limitations are:
+
+- Code reusability is limited.
+- Data is less secure because it can be accessed directly.
+- Large programs become difficult to maintain.
+- Debugging becomes more complex.
+- Modifying one function may affect other parts of the program.
+
+These limitations led to the development of Object-Oriented Programming.
+
+---
+
+# Why Object-Oriented Programming?
+
+Object-Oriented Programming helps solve many problems found in procedural programming.
+
+It provides:
+
+- Better code organization.
+- Code reusability.
+- Data security.
+- Easier maintenance.
+- Better scalability.
+- Modular programming.
+
+Because of these advantages, OOP is widely used in modern software development.
 
 ---
 
 # What is Object-Oriented Programming?
 
-Object-Oriented Programming (OOP) is a programming paradigm in which programs are designed using **objects** and **classes**.
+Object-Oriented Programming (OOP) is a programming paradigm in which software is designed using **classes** and **objects**.
+
+A class acts as a blueprint, while objects represent real-world entities created from that blueprint.
 
 An object contains:
 
 - Data (Attributes)
-- Functions (Methods)
+- Behavior (Methods)
 
 ---
 
-# Why Do We Need OOP?
+# Real-World Analogy
 
-Suppose we are developing a Student Management System.
+Consider a mobile phone.
 
-Each student has:
+Every mobile phone has:
 
-- Roll Number
-- Name
-- Age
-- Marks
-
-Instead of creating separate variables for every student, we can create a **Student class**.
-
-From that class, we can create multiple student objects.
-
-This makes the program:
-
-- Easy to understand
-- Easy to maintain
-- Reusable
-- Scalable
-
----
-
-# Real-Life Example
-
-Consider a car.
-
-Every car has:
+Attributes:
 
 - Brand
 - Model
 - Color
-- Engine Number
+- Price
 
-And every car performs actions like:
+Behaviors:
 
-- Start
-- Stop
-- Accelerate
+- Call
+- Message
+- Camera
+- Internet
+
+Similarly, in Python:
+
+```text
+Mobile
+
+↓
+
+Class
+
+↓
+
+Samsung Galaxy
+
+↓
+
+Object
+```
+
+The class defines the structure, while the object is an actual instance created from that structure.
+
+---
+
+# Features of Object-Oriented Programming
+
+Object-Oriented Programming provides the following features:
+
+- Classes
+- Objects
+- Encapsulation
+- Abstraction
+- Inheritance
+- Polymorphism
+- Reusability
+- Modularity
+
+---
+
+# Four Pillars of OOP
+
+Object-Oriented Programming is built on four fundamental principles.
+
+## 1. Encapsulation
+
+Encapsulation is the process of combining data and methods into a single unit called a class.
+
+Example:
+
+A Bank Account stores:
+
+- Account Number
+- Balance
+
+and provides methods such as:
+
+- Deposit()
+- Withdraw()
+
+The internal data is protected from direct access.
+
+---
+
+## 2. Abstraction
+
+Abstraction means hiding unnecessary implementation details and showing only the essential features.
+
+Example:
+
+While driving a car, the driver uses:
+
+- Steering Wheel
 - Brake
+- Accelerator
 
-Here,
-
-Car → Class
-
-Individual Car → Object
+The driver does not need to know how the engine works internally.
 
 ---
 
-# What is a Class?
+## 3. Inheritance
 
-A **Class** is a blueprint or template used to create objects.
+Inheritance allows one class to acquire the properties and methods of another class.
 
-A class defines:
+Example:
 
-- Attributes (Data Members)
-- Methods (Member Functions)
+Vehicle
+
+↓
+
+Car
+
+↓
+
+Electric Car
+
+The child class automatically inherits features from the parent class.
 
 ---
 
-# What is an Object?
+## 4. Polymorphism
 
-An **Object** is an instance of a class.
+Polymorphism means "many forms."
 
-Objects occupy memory and can access the data and methods defined inside the class.
+The same method can perform different actions depending on the object.
 
----
+Example:
 
-# Relationship Between Class and Object
+Method:
 
 ```text
-           Class
-
-             │
-
-             ▼
-
-      Create Object
-
-             │
-
-             ▼
-
-          Object
+draw()
 ```
 
----
+Objects:
 
-# Syntax of a Class
+- Circle
+- Rectangle
+- Triangle
 
-```python
-class ClassName:
-
-    # Data Members
-
-    # Methods
-```
-
----
-
-# Creating an Object
-
-```python
-object_name = ClassName()
-```
-
----
-
-# Program 1 : Creating a Class and Object
-
-## Problem Statement
-
-Write a Python program to create a class and an object.
-
----
-
-## Program
-
-```python
-# Creating a class
-class Student:
-
-    # Creating a method
-    def display(self):
-        print("Welcome to Python OOP")
-
-# Creating an object
-student = Student()
-
-# Calling the method
-student.display()
-```
-
----
-
-## Output
-
-```text
-Welcome to Python OOP
-```
-
----
-
-## Pseudocode
-
-```text
-START
-
-Create a class
-
-Create a method
-
-Create an object
-
-Call the method
-
-STOP
-```
-
----
-
-## Line-by-Line Explanation
-
-### Line 1
-
-```python
-class Student:
-```
-
-Creates a class named `Student`.
-
----
-
-### Line 2
-
-```python
-def display(self):
-```
-
-Defines a method inside the class.
-
----
-
-### Line 3
-
-```python
-print("Welcome to Python OOP")
-```
-
-Displays a message.
-
----
-
-### Line 4
-
-```python
-student = Student()
-```
-
-Creates an object of the `Student` class.
-
----
-
-### Line 5
-
-```python
-student.display()
-```
-
-Calls the method using the object.
-
----
-
-# Characteristics of OOP
-
-- Programs are object-oriented.
-- Supports code reusability.
-- Supports modular programming.
-- Easy to maintain.
-- Easy to extend.
+Each object provides its own implementation of the `draw()` method.
 
 ---
 
 # Advantages of OOP
 
+Object-Oriented Programming offers several advantages:
+
 - Code Reusability
 - Easy Maintenance
 - Better Security
-- Easy Debugging
-- Modular Programming
+- Modular Design
+- Scalability
+- Easy Testing
 - Real-World Modeling
-
----
-
-# Real-Time Applications
-
-Object-Oriented Programming is used in:
-
-- Banking Applications
-- Hospital Management Systems
-- Student Management Systems
-- E-Commerce Applications
-- Airline Reservation Systems
-- Library Management Systems
-
----
-
-# Common Mistakes
-
-## Forgetting to Create an Object
-
-```python
-class Student:
-
-    def display(self):
-        print("Hello")
-```
-
-This only creates a class.
-
-Without creating an object, the method cannot be executed.
-
----
-
-## Forgetting self
-
-```python
-class Student:
-
-    def display():
-        print("Hello")
-```
-
-This produces an error because instance methods must include the `self` parameter.
-
----
-
-# Interview Questions
-
-## 1. What is OOP?
-
-### Answer
-
-Object-Oriented Programming is a programming paradigm based on classes and objects.
-
----
-
-## 2. What is a Class?
-
-### Answer
-
-A class is a blueprint used to create objects.
-
----
-
-## 3. What is an Object?
-
-### Answer
-
-An object is an instance of a class.
-
----
-
-## 4. Why is OOP used?
-
-### Answer
-
-OOP improves code reusability, modularity, maintainability, and scalability.
-
----
-
-## 5. Which keyword is used to create a class in Python?
-
-### Answer
-
-The `class` keyword.
-
----
-
-# Quick Revision
-
-- OOP stands for Object-Oriented Programming.
-- Class is a blueprint.
-- Object is an instance of a class.
-- Objects access class methods.
-- OOP supports reusable and maintainable code.
+- Improved Readability
 
 ---
 
 # Summary
 
-In this chapter, you learned:
+In this part, you learned:
 
-- What Object-Oriented Programming is.
-- Why OOP is required.
-- What a Class is.
-- What an Object is.
-- Creating classes and objects.
-- Advantages of OOP.
-- Practical program.
-- Interview questions.
+- Programming Paradigms
+- Procedural Programming
+- Limitations of Procedural Programming
+- Why OOP was introduced
+- Object-Oriented Programming
+- Real-World Analogy
+- Features of OOP
+- Four Pillars of OOP
