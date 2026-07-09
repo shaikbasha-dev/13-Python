@@ -1,5 +1,3 @@
----
-
 # Type Casting in Python
 
 ## Introduction
@@ -15,15 +13,11 @@ For example:
 
 This process is called **Type Casting** or **Type Conversion**.
 
----
-
 ## Definition
 
 **Type Casting** is the process of converting a value from one data type to another data type.
 
 Python provides built-in functions to perform type conversion.
-
----
 
 ## Why do we use Type Casting?
 
@@ -34,8 +28,6 @@ Type casting is used to:
 - Convert one data type into another.
 - Avoid type mismatch errors.
 - Improve program flexibility.
-
----
 
 ## Types of Type Casting
 
@@ -51,8 +43,6 @@ Type Casting
 └── Explicit Type Casting
 ```
 
----
-
 # Implicit Type Casting
 
 ## Definition
@@ -62,8 +52,6 @@ Type Casting
 The programmer does not perform the conversion manually.
 
 Python automatically converts the smaller data type into a larger compatible data type.
-
----
 
 ## Example
 
@@ -79,8 +67,6 @@ print(result)
 print(type(result))
 ```
 
----
-
 ## Output
 
 ```text
@@ -89,16 +75,12 @@ print(type(result))
 <class 'float'>
 ```
 
----
-
 ## Explanation
 
 - `number1` is an integer.
 - `number2` is a float.
 - Python automatically converts the integer into a float.
 - The result becomes a float.
-
----
 
 ## Memory Representation
 
@@ -116,8 +98,6 @@ print(type(result))
 15.5 (float)
 ```
 
----
-
 # Explicit Type Casting
 
 ## Definition
@@ -126,15 +106,11 @@ print(type(result))
 
 The programmer performs the conversion.
 
----
-
 ## Syntax
 
 ```python
 new_variable = datatype(value)
 ```
-
----
 
 ## Example
 
@@ -148,8 +124,6 @@ print(result)
 print(type(result))
 ```
 
----
-
 ## Output
 
 ```text
@@ -158,15 +132,11 @@ print(type(result))
 <class 'int'>
 ```
 
----
-
 ## Explanation
 
 The `int()` function converts the float value into an integer.
 
 The decimal part is removed.
-
----
 
 # Built-in Type Conversion Functions
 
@@ -179,8 +149,6 @@ Python provides several built-in functions for type conversion.
 | `str()` | Converts a value into a string |
 | `bool()` | Converts a value into a Boolean |
 | `complex()` | Converts a value into a complex number |
-
----
 
 # int()
 
@@ -198,8 +166,6 @@ print(int(number))
 99
 ```
 
----
-
 # float()
 
 ## Example
@@ -215,8 +181,6 @@ print(float(number))
 ```text
 50.0
 ```
-
----
 
 # str()
 
@@ -237,8 +201,6 @@ print(type(str(number)))
 
 <class 'str'>
 ```
-
----
 
 # bool()
 
@@ -266,8 +228,6 @@ True
 False
 ```
 
----
-
 # complex()
 
 ## Example
@@ -283,8 +243,6 @@ print(number)
 ```text
 (10+0j)
 ```
-
----
 
 # Complete Type Conversion Program
 
@@ -310,8 +268,6 @@ number5 = 15
 print(complex(number5))
 ```
 
----
-
 ## Output
 
 ```text
@@ -325,8 +281,6 @@ True
 
 (15+0j)
 ```
-
----
 
 ## Pseudocode
 
@@ -360,81 +314,55 @@ Display result
 STOP
 ```
 
----
-
 ## Line-by-Line Explanation
 
 ### Line 1
 
 Creates an integer variable.
 
----
-
 ### Line 2
 
 Converts the integer into a float.
-
----
 
 ### Line 3
 
 Displays the float value.
 
----
-
 ### Line 4
 
 Creates a float variable.
-
----
 
 ### Line 5
 
 Converts the float into an integer.
 
----
-
 ### Line 6
 
 Displays the integer value.
-
----
 
 ### Line 7
 
 Converts the integer into a string.
 
----
-
 ### Line 8
 
 Displays the string.
-
----
 
 ### Line 9
 
 Converts the integer into a Boolean.
 
----
-
 ### Line 10
 
 Displays the Boolean value.
-
----
 
 ### Line 11
 
 Converts the integer into a complex number.
 
----
-
 ### Line 12
 
 Displays the complex number.
-
----
 
 ## Comparison
 
@@ -445,8 +373,6 @@ Displays the complex number.
 | No built-in function required | Uses built-in functions |
 | Safe conversion | Programmer controls conversion |
 
----
-
 ## Characteristics of Type Casting
 
 - Converts one data type into another.
@@ -455,8 +381,6 @@ Displays the complex number.
 - Reduces type mismatch errors.
 - Makes programs more flexible.
 
----
-
 ## Summary
 
 - Type Casting means converting one data type into another.
@@ -464,4 +388,3 @@ Displays the complex number.
 - Implicit conversion is done automatically by Python.
 - Explicit conversion is done manually using built-in functions.
 - Common conversion functions are `int()`, `float()`, `str()`, `bool()`, and `complex()`.
-
