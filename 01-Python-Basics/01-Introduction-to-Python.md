@@ -111,8 +111,8 @@ The snake has no connection to the programming language other than sharing the s
 
 ## Creator of Python
 
-| Attribute | Information |
-|-----------|-------------|
+| **Attribute** | **Information** |
+|---------------|-----------------|
 | Creator | Guido van Rossum |
 | Nationality | Dutch |
 | Started Development | December 1989 |
@@ -124,8 +124,8 @@ The snake has no connection to the programming language other than sharing the s
 
 ## Timeline of Python
 
-| Year | Event |
-|------|-------|
+| **Year** | **Event** |
+|----------|-----------|
 | 1989 | Python development started |
 | 1991 | Python 0.9.0 released |
 | 1994 | Python 1.0 released |
@@ -240,40 +240,19 @@ Computer Hardware
      │
      ▼
 Displays Output
-```
-
----
-
-## Why is Python Easy to Learn?
-
-Python follows several design principles that make learning easier.
-
-- Simple syntax
-- Readable code
-- English-like keywords
-- Automatic memory management
-- Rich built-in functions
-- Extensive documentation
-- Large online community
-- Interactive programming support
-- Cross-platform compatibility
-
-These features allow beginners to concentrate on programming logic rather than complex syntax.
-
----
 
 ## Key Characteristics of Python
 
-| Characteristic | Description |
-|---------------|-------------|
-| High-Level Language | Easy for humans to understand |
-| Interpreted Language | Executed line by line |
-| Dynamically Typed | No explicit variable type declaration required |
-| Object-Oriented | Supports classes and objects |
-| Open Source | Free to use and modify |
-| Portable | Runs on multiple operating systems |
-| Extensible | Can integrate with C, C++, Java, etc. |
-| Scalable | Suitable for both small and large applications |
+| **Characteristic**   | **Description**                                |
+| -------------------- | ---------------------------------------------- |
+| High-Level Language  | Easy for humans to understand                  |
+| Interpreted Language | Executed line by line                          |
+| Dynamically Typed    | No explicit variable type declaration required |
+| Object-Oriented      | Supports classes and objects                   |
+| Open Source          | Free to use and modify                         |
+| Portable             | Runs on multiple operating systems             |
+| Extensible           | Can integrate with C, C++, Java, etc.          |
+| Scalable             | Suitable for both small and large applications |
 
 ---
 
@@ -299,10 +278,10 @@ Instead of writing many statements, Python often solves problems with just a few
 
 **Benefits**
 
-- Easy for beginners
-- Faster learning
-- Less coding effort
-- Improved readability
+* Easy for beginners
+* Faster learning
+* Less coding effort
+* Improved readability
 
 ---
 
@@ -316,12 +295,12 @@ Python automatically handles many low-level operations like memory allocation.
 
 #### Low-Level vs High-Level
 
-| Low-Level Language | High-Level Language |
-|-------------------|--------------------|
-| Difficult to understand | Easy to understand |
-| Machine dependent | Machine independent |
-| Faster execution | Faster development |
-| Complex syntax | Simple syntax |
+| **Low-Level Language**  | **High-Level Language** |
+| ----------------------- | ----------------------- |
+| Difficult to understand | Easy to understand      |
+| Machine dependent       | Machine independent     |
+| Faster execution        | Faster development      |
+| Complex syntax          | Simple syntax           |
 
 ---
 
@@ -350,10 +329,10 @@ Output
 
 **Advantages**
 
-- Easy debugging
-- Immediate execution
-- Platform independent
-- Faster testing
+* Easy debugging
+* Immediate execution
+* Platform independent
+* Faster testing
 
 ---
 
@@ -375,9 +354,9 @@ salary = 35000.75
 
 The interpreter automatically identifies:
 
-- name → String
-- age → Integer
-- salary → Float
+* name → String
+* age → Integer
+* salary → Float
 
 ---
 
@@ -391,12 +370,12 @@ OOP helps developers organize programs into reusable and maintainable components
 
 Python supports:
 
-- Classes
-- Objects
-- Encapsulation
-- Inheritance
-- Polymorphism
-- Abstraction
+* Classes
+* Objects
+* Encapsulation
+* Inheritance
+* Polymorphism
+* Abstraction
 
 ---
 
@@ -406,10 +385,10 @@ Python is completely free to use.
 
 Anyone can:
 
-- Download Python
-- Modify Python
-- Distribute Python
-- Build applications
+* Download Python
+* Modify Python
+* Distribute Python
+* Build applications
 
 The source code is publicly available.
 
@@ -423,10 +402,10 @@ Python programs can run on different operating systems without changing the sour
 
 Supported operating systems include:
 
-- Windows
-- Linux
-- macOS
-- Unix
+* Windows
+* Linux
+* macOS
+* Unix
 
 Example:
 
@@ -458,15 +437,15 @@ These modules reduce development time because developers do not need to write ev
 
 Examples include:
 
-| Module | Purpose |
-|---------|----------|
-| math | Mathematical operations |
-| random | Random number generation |
-| os | Operating system interaction |
-| datetime | Date and time operations |
-| statistics | Statistical calculations |
-| json | JSON data handling |
-| csv | CSV file operations |
+| **Module** | **Purpose**                  |
+| ---------- | ---------------------------- |
+| math       | Mathematical operations      |
+| random     | Random number generation     |
+| os         | Operating system interaction |
+| datetime   | Date and time operations     |
+| statistics | Statistical calculations     |
+| json       | JSON data handling           |
+| csv        | CSV file operations          |
 
 ---
 
@@ -476,16 +455,16 @@ Apart from the standard library, Python has hundreds of thousands of third-party
 
 Some popular packages include:
 
-| Package | Usage |
-|----------|-------|
-| NumPy | Numerical Computing |
-| Pandas | Data Analysis |
-| Matplotlib | Data Visualization |
-| TensorFlow | Machine Learning |
-| Flask | Web Development |
-| Django | Enterprise Web Applications |
-| OpenCV | Computer Vision |
-| Selenium | Automation Testing |
+| **Package** | **Usage**                   |
+| ----------- | --------------------------- |
+| NumPy       | Numerical Computing         |
+| Pandas      | Data Analysis               |
+| Matplotlib  | Data Visualization          |
+| TensorFlow  | Machine Learning            |
+| Flask       | Web Development             |
+| Django      | Enterprise Web Applications |
+| OpenCV      | Computer Vision             |
+| Selenium    | Automation Testing          |
 
 ---
 
@@ -497,8 +476,8 @@ The programmer does not need to manually allocate or free memory.
 
 Python uses:
 
-- Reference Counting
-- Garbage Collection
+* Reference Counting
+* Garbage Collection
 
 This reduces memory leaks and programming errors.
 
@@ -508,9 +487,9 @@ This reduces memory leaks and programming errors.
 
 Python can be extended using languages like:
 
-- C
-- C++
-- Java
+* C
+* C++
+* Java
 
 This allows developers to improve performance where required.
 
@@ -530,10 +509,10 @@ Millions of developers contribute to Python.
 
 Because of this:
 
-- Problems are solved quickly.
-- Tutorials are widely available.
-- Documentation is extensive.
-- Libraries are continuously improved.
+* Problems are solved quickly.
+* Tutorials are widely available.
+* Documentation is extensive.
+* Libraries are continuously improved.
 
 ---
 
@@ -543,11 +522,11 @@ Python allows developers to build applications quickly.
 
 Reasons include:
 
-- Simple syntax
-- Built-in libraries
-- Ready-made modules
-- Less code
-- Faster debugging
+* Simple syntax
+* Built-in libraries
+* Ready-made modules
+* Less code
+* Faster debugging
 
 ---
 
@@ -555,32 +534,30 @@ Reasons include:
 
 Python can be used for:
 
-- Small scripts
-- Desktop applications
-- Enterprise applications
-- Large cloud platforms
+* Small scripts
+* Desktop applications
+* Enterprise applications
+* Large cloud platforms
 
 Many multinational companies use Python in production.
-
----
 
 ## Advantages of Python
 
 Python offers numerous advantages over many traditional programming languages.
 
-| Advantage | Description |
-|-----------|-------------|
-| Easy to Learn | Beginner-friendly syntax |
-| Easy to Read | Highly readable code |
-| Less Coding | Accomplishes tasks with fewer lines |
-| Platform Independent | Works on multiple operating systems |
-| Open Source | Free to use |
-| Large Community | Extensive developer support |
-| Huge Library Support | Thousands of built-in and third-party modules |
-| Fast Development | Reduces software development time |
-| Object-Oriented | Supports reusable software development |
-| Automatic Memory Management | No manual memory allocation |
-| Highly Productive | Faster development compared to many languages |
+| **Advantage**               | **Description**                               |
+| --------------------------- | --------------------------------------------- |
+| Easy to Learn               | Beginner-friendly syntax                      |
+| Easy to Read                | Highly readable code                          |
+| Less Coding                 | Accomplishes tasks with fewer lines           |
+| Platform Independent        | Works on multiple operating systems           |
+| Open Source                 | Free to use                                   |
+| Large Community             | Extensive developer support                   |
+| Huge Library Support        | Thousands of built-in and third-party modules |
+| Fast Development            | Reduces software development time             |
+| Object-Oriented             | Supports reusable software development        |
+| Automatic Memory Management | No manual memory allocation                   |
+| Highly Productive           | Faster development compared to many languages |
 
 ---
 
@@ -588,13 +565,13 @@ Python offers numerous advantages over many traditional programming languages.
 
 Although Python is powerful, it has some limitations.
 
-| Disadvantage | Explanation |
-|-------------|-------------|
-| Slower Execution | Interpreted execution is generally slower than compiled languages |
-| Higher Memory Usage | Consumes more memory than low-level languages |
-| Mobile Development | Less commonly used for native mobile applications |
-| Runtime Errors | Dynamic typing may lead to runtime errors |
-| Database Access | Some enterprise databases have stronger support in other languages |
+| **Disadvantage**    | **Explanation**                                                    |
+| ------------------- | ------------------------------------------------------------------ |
+| Slower Execution    | Interpreted execution is generally slower than compiled languages  |
+| Higher Memory Usage | Consumes more memory than low-level languages                      |
+| Mobile Development  | Less commonly used for native mobile applications                  |
+| Runtime Errors      | Dynamic typing may lead to runtime errors                          |
+| Database Access     | Some enterprise databases have stronger support in other languages |
 
 ---
 
@@ -602,13 +579,13 @@ Although Python is powerful, it has some limitations.
 
 Many organizations prefer Python because it offers:
 
-- Faster software development
-- Lower maintenance cost
-- Excellent readability
-- Rich ecosystem
-- Strong community support
-- Easy hiring due to its popularity
-- Integration with modern technologies
+* Faster software development
+* Lower maintenance cost
+* Excellent readability
+* Rich ecosystem
+* Strong community support
+* Easy hiring due to its popularity
+* Integration with modern technologies
 
 ---
 
@@ -618,18 +595,18 @@ Many well-known organizations use Python in their products and services.
 
 Some examples include:
 
-- Google
-- Microsoft
-- Netflix
-- Amazon
-- Meta
-- Spotify
-- Dropbox
-- Instagram
-- Reddit
-- Uber
-- NASA
-- IBM
+* Google
+* Microsoft
+* Netflix
+* Amazon
+* Meta
+* Spotify
+* Dropbox
+* Instagram
+* Reddit
+* Uber
+* NASA
+* IBM
 
 Python is widely adopted because it supports scalable and reliable software development.
 
@@ -637,18 +614,18 @@ Python is widely adopted because it supports scalable and reliable software deve
 
 ## Feature Summary
 
-| Feature | Benefit |
-|----------|---------|
-| Simple Syntax | Easy to learn |
-| Interpreted | Quick execution and debugging |
-| Dynamic Typing | No explicit type declaration |
-| Object-Oriented | Better code organization |
-| Open Source | Free to use |
-| Portable | Runs across platforms |
-| Rich Libraries | Faster development |
-| Community Support | Easy problem solving |
-| Automatic Memory Management | Reduced programming complexity |
-| Extensible | Integrates with other languages |
+| **Feature**                 | **Benefit**                     |
+| --------------------------- | ------------------------------- |
+| Simple Syntax               | Easy to learn                   |
+| Interpreted                 | Quick execution and debugging   |
+| Dynamic Typing              | No explicit type declaration    |
+| Object-Oriented             | Better code organization        |
+| Open Source                 | Free to use                     |
+| Portable                    | Runs across platforms           |
+| Rich Libraries              | Faster development              |
+| Community Support           | Easy problem solving            |
+| Automatic Memory Management | Reduced programming complexity  |
+| Extensible                  | Integrates with other languages |
 
 ---
 
@@ -666,20 +643,20 @@ Python is extensively used for developing dynamic, scalable, and secure web appl
 
 Popular Python web frameworks include:
 
-- Django
-- Flask
-- FastAPI
-- Pyramid
+* Django
+* Flask
+* FastAPI
+* Pyramid
 
 These frameworks provide built-in tools for authentication, database connectivity, routing, security, and RESTful API development.
 
 Examples:
 
-- E-commerce Websites
-- Banking Portals
-- Online Learning Platforms
-- Hospital Management Systems
-- Content Management Systems (CMS)
+* E-commerce Websites
+* Banking Portals
+* Online Learning Platforms
+* Hospital Management Systems
+* Content Management Systems (CMS)
 
 ---
 
@@ -689,21 +666,21 @@ Python is considered the leading programming language for Data Science.
 
 Data Scientists use Python to:
 
-- Clean data
-- Analyze data
-- Visualize data
-- Generate reports
-- Build predictive models
+* Clean data
+* Analyze data
+* Visualize data
+* Generate reports
+* Build predictive models
 
 Popular libraries:
 
-| Library | Purpose |
-|----------|---------|
-| NumPy | Numerical Computing |
-| Pandas | Data Analysis |
-| Matplotlib | Data Visualization |
-| Plotly | Interactive Charts |
-| Seaborn | Statistical Visualization |
+| **Library** | **Purpose**               |
+| ----------- | ------------------------- |
+| NumPy       | Numerical Computing       |
+| Pandas      | Data Analysis             |
+| Matplotlib  | Data Visualization        |
+| Plotly      | Interactive Charts        |
+| Seaborn     | Statistical Visualization |
 
 ---
 
@@ -713,18 +690,18 @@ Machine Learning enables computers to learn from historical data.
 
 Python provides several powerful libraries:
 
-- Scikit-Learn
-- TensorFlow
-- PyTorch
-- Keras
+* Scikit-Learn
+* TensorFlow
+* PyTorch
+* Keras
 
 Applications include:
 
-- Recommendation Systems
-- Fraud Detection
-- Spam Email Detection
-- Image Recognition
-- Predictive Analytics
+* Recommendation Systems
+* Fraud Detection
+* Spam Email Detection
+* Image Recognition
+* Predictive Analytics
 
 ---
 
@@ -734,12 +711,12 @@ Python is widely used to build intelligent systems.
 
 Examples include:
 
-- Chatbots
-- Virtual Assistants
-- Face Recognition
-- Speech Recognition
-- Robotics
-- Self-driving Vehicles
+* Chatbots
+* Virtual Assistants
+* Face Recognition
+* Speech Recognition
+* Robotics
+* Self-driving Vehicles
 
 ---
 
@@ -749,19 +726,19 @@ Python is one of the best languages for automating repetitive tasks.
 
 Examples include:
 
-- File Handling
-- Folder Management
-- Excel Automation
-- Email Automation
-- Browser Automation
-- Report Generation
+* File Handling
+* Folder Management
+* Excel Automation
+* Email Automation
+* Browser Automation
+* Report Generation
 
 Popular libraries:
 
-- Selenium
-- OpenPyXL
-- PyAutoGUI
-- Requests
+* Selenium
+* OpenPyXL
+* PyAutoGUI
+* Requests
 
 ---
 
@@ -771,18 +748,18 @@ Python is widely used in software testing.
 
 Automation testing tools:
 
-- Selenium
-- Robot Framework
-- PyTest
-- Behave
-- unittest
+* Selenium
+* Robot Framework
+* PyTest
+* Behave
+* unittest
 
 Testing includes:
 
-- Unit Testing
-- Functional Testing
-- Integration Testing
-- API Testing
+* Unit Testing
+* Functional Testing
+* Integration Testing
+* API Testing
 
 ---
 
@@ -790,18 +767,18 @@ Testing includes:
 
 Python helps security professionals build tools for:
 
-- Network Scanning
-- Penetration Testing
-- Password Auditing
-- Packet Analysis
-- Malware Analysis
+* Network Scanning
+* Penetration Testing
+* Password Auditing
+* Packet Analysis
+* Malware Analysis
 
 Popular libraries:
 
-- Scapy
-- Paramiko
-- Nmap
-- Requests
+* Scapy
+* Paramiko
+* Nmap
+* Requests
 
 ---
 
@@ -809,11 +786,11 @@ Popular libraries:
 
 Python is used in IoT devices like:
 
-- Raspberry Pi
-- Smart Home Systems
-- Industrial Automation
-- Smart Agriculture
-- Smart Traffic Systems
+* Raspberry Pi
+* Smart Home Systems
+* Industrial Automation
+* Smart Agriculture
+* Smart Traffic Systems
 
 ---
 
@@ -823,15 +800,15 @@ Cloud platforms support Python extensively.
 
 Examples:
 
-- AWS
-- Microsoft Azure
-- Google Cloud Platform
+* AWS
+* Microsoft Azure
+* Google Cloud Platform
 
 Python helps in:
 
-- Cloud Automation
-- Serverless Applications
-- Infrastructure Management
+* Cloud Automation
+* Serverless Applications
+* Infrastructure Management
 
 ---
 
@@ -839,17 +816,17 @@ Python helps in:
 
 Python can develop desktop applications using:
 
-- Tkinter
-- PyQt
-- Kivy
-- wxPython
+* Tkinter
+* PyQt
+* Kivy
+* wxPython
 
 Examples:
 
-- Calculator
-- Notepad
-- Billing Software
-- Inventory Management
+* Calculator
+* Notepad
+* Billing Software
+* Inventory Management
 
 ---
 
@@ -857,14 +834,14 @@ Examples:
 
 Python supports game development using libraries such as:
 
-- Pygame
-- Panda3D
+* Pygame
+* Panda3D
 
 Games include:
 
-- Puzzle Games
-- Educational Games
-- 2D Arcade Games
+* Puzzle Games
+* Educational Games
+* 2D Arcade Games
 
 ---
 
@@ -872,18 +849,16 @@ Games include:
 
 Scientists use Python for:
 
-- Mathematical Modeling
-- Physics Simulations
-- Chemical Analysis
-- Weather Prediction
-- Medical Research
+* Mathematical Modeling
+* Physics Simulations
+* Chemical Analysis
+* Weather Prediction
+* Medical Research
 
 Libraries include:
 
-- SciPy
-- SymPy
-
----
+* SciPy
+* SymPy
 
 ## Real-World Applications
 
@@ -891,16 +866,16 @@ Python powers many real-world systems that people use every day.
 
 Some examples include:
 
-| Company | Python Usage |
-|----------|--------------|
-| Google | Search Systems, AI |
-| Netflix | Recommendation Engine |
-| Instagram | Backend Services |
-| Spotify | Music Recommendation |
-| Dropbox | Cloud Storage |
-| Reddit | Backend Development |
-| Uber | Data Analytics |
-| NASA | Scientific Research |
+| **Company** | **Python Usage**      |
+| ----------- | --------------------- |
+| Google      | Search Systems, AI    |
+| Netflix     | Recommendation Engine |
+| Instagram   | Backend Services      |
+| Spotify     | Music Recommendation  |
+| Dropbox     | Cloud Storage         |
+| Reddit      | Backend Development   |
+| Uber        | Data Analytics        |
+| NASA        | Scientific Research   |
 
 ---
 
@@ -977,30 +952,30 @@ Output
 
 When learning Python, follow these best practices:
 
-- Write meaningful variable names.
-- Follow Python naming conventions.
-- Keep code simple and readable.
-- Use comments where necessary.
-- Avoid duplicate code.
-- Break large problems into functions.
-- Learn the standard library.
-- Practice coding regularly.
-- Follow the PEP 8 style guide.
-- Write reusable code.
+* Write meaningful variable names.
+* Follow Python naming conventions.
+* Keep code simple and readable.
+* Use comments where necessary.
+* Avoid duplicate code.
+* Break large problems into functions.
+* Learn the standard library.
+* Practice coding regularly.
+* Follow the PEP 8 style guide.
+* Write reusable code.
 
 ---
 
 ## Common Mistakes Made by Beginners
 
-- Incorrect indentation
-- Forgetting colons (`:`)
-- Mixing tabs and spaces
-- Poor variable naming
-- Ignoring exceptions
-- Not using functions
-- Writing everything in one file
-- Forgetting to close files
-- Modifying mutable objects unintentionally
+* Incorrect indentation
+* Forgetting colons (`:`)
+* Mixing tabs and spaces
+* Poor variable naming
+* Ignoring exceptions
+* Not using functions
+* Writing everything in one file
+* Forgetting to close files
+* Modifying mutable objects unintentionally
 
 ---
 
@@ -1028,9 +1003,9 @@ Because it is simple, readable, cross-platform, open source, and supported by a 
 
 ### 6. Name three major applications of Python.
 
-- Web Development
-- Data Science
-- Artificial Intelligence
+* Web Development
+* Data Science
+* Artificial Intelligence
 
 ### 7. Is Python object-oriented?
 
@@ -1042,17 +1017,17 @@ Yes. Python supports object-oriented programming along with procedural and funct
 
 In this chapter, you learned:
 
-- What Python is.
-- Why Python was developed.
-- History of Python.
-- Features of Python.
-- Advantages and disadvantages.
-- Applications of Python.
-- High-level architecture.
-- Execution overview.
-- Best practices.
-- Common mistakes.
-- Basic interview questions.
+* What Python is.
+* Why Python was developed.
+* History of Python.
+* Features of Python.
+* Advantages and disadvantages.
+* Applications of Python.
+* High-level architecture.
+* Execution overview.
+* Best practices.
+* Common mistakes.
+* Basic interview questions.
 
 This foundational knowledge prepares you for the upcoming topics, where you will begin writing Python programs and explore the language in greater depth.
 
