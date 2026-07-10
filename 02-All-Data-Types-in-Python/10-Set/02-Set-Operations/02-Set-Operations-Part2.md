@@ -1,5 +1,3 @@
----
-
 # Mathematical Set Operations
 
 ## Definition
