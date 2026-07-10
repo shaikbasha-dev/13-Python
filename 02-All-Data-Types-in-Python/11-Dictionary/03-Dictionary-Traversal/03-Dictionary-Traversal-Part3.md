@@ -1,5 +1,3 @@
----
-
 # Difference Between keys(), values(), and items()
 
 | keys() | values() | items() |
