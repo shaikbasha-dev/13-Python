@@ -1,5 +1,3 @@
----
-
 # Question 21
 
 ## Predict the Output
