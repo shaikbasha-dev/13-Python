@@ -1,5 +1,3 @@
----
-
 # Pseudocode
 
 ```text
