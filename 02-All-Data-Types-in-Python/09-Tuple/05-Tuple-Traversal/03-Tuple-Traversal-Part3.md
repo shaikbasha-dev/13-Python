@@ -1,5 +1,3 @@
----
-
 # Difference Between for Loop and while Loop
 
 | for Loop | while Loop |
