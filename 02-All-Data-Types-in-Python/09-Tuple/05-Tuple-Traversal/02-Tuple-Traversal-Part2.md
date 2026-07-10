@@ -1,5 +1,3 @@
----
-
 # Traversing Using while Loop
 
 ## Syntax
