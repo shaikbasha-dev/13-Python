@@ -1,5 +1,3 @@
----
-
 # Traversing Values Using values()
 
 ## Syntax
